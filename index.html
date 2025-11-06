@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gabekile Projects — Construction & Engineering</title>
+  <meta name="description"
+    content="Gabekile Projects: general building, civil, electrical, mechanical engineering and project management. Proudly black-owned since 2018." />
+  <meta property="og:title" content="Gabekile Projects — Construction & Engineering" />
+  <meta property="og:description" content="High-quality construction, civil, and project management services." />
+  <meta property="og:image" content="images/og-preview.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJzL3m3YI1QcHzQ64V6K93K9n8xV0kG8N7sQ/wN6L/W/W5q+v/nF7G/I8w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    <link rel="icon" type="image/png" href="logo/logo.png" sizes="32x32">
+    
+    <link rel="shortcut icon" href="logo/logo.png"> 
+
+    
+
+  <style>
+    /* ========================================================
+    CSS Variables
+    ======================================================== */
+    :root {
+      --brand-yellow: #ffb300;
+      --brand-dark: #0f1720;
+      --brand-accent: #ff7a00;
+      --text-color: #1e1e1e;
+      --muted: #6b7280;
+      --bg-light: #f4f4f9;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ========================================================
+       FONT AWESOME FIX: Ensures fa-brands icons display correctly
+       ======================================================== */
+    .fa-brands {
+      font-family: "Font Awesome 6 Brands" !important;
+      font-weight: 400 !important;
+      /* The required weight for the Brands set */
+    }
+
+    /* ========================================================
+    Body & Aesthetic Texture (FIXED SYNTAX)
+    ======================================================== */
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--bg-light);
+
+      /* Subtle Diagonal Pattern for Depth (Dynamically created with CSS gradient) */
+      background-image: linear-gradient(45deg,
+          rgba(0, 0, 0, 0.01) 25%,
+          transparent 25%,
+          transparent 75%,
+          rgba(0, 0, 0, 0.01) 75%,
+          rgba(0, 0, 0, 0.01));
+      background-size: 15px 15px;
+    }
+
+    /* Ensure sections use the texture */
+    .services-section,
+    .timeline-section {
+      background-color: var(--bg-light);
+      background-image: linear-gradient(45deg,
+          rgba(0, 0, 0, 0.01) 25%,
+          transparent 25%,
+          transparent 75%,
+          rgba(0, 0, 0, 0.01) 75%,
+          rgba(0, 0, 0, 0.01));
+      background-size: 15px 15px;
+    }
+
+    /* Crucial: Ensures pure white cards and sections don't inherit the texture */
+    .card,
+    .service-card,
+    .timeline-content,
+    .affiliation-section {
+      background-color: var(--card-bg);
+      background-image: none;
+    }
+
+
+    /* ========================================================
+    Layout & Utilities
+    ======================================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.2em;
+      color: var(--brand-dark);
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .mt-12 {
+      margin-top: 12px;
+    }
+
+    .mt-14 {
+      margin-top: 14px;
+    }
+
+    .blockquote-highlight {
+      margin: 8px 0 0 0;
+      padding: 12px;
+      border-left: 4px solid var(--brand-yellow);
+      background: #fff8e6;
+      color: var(--text-color);
+    }
+
+    /* Fade In Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================================
+    Header & Navigation 
+    ======================================================== */
+    header {
+      background-color: var(--brand-dark);
+      color: white;
+      padding-top: 20px;
+      transition: all 0.3s ease;
+      /* Smooth transition for shrinking */
+    }
+
+    /* Class applied by JavaScript when scrolled */
+    header.scrolled {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: var(--brand-dark);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header.scrolled .brand-title {
+      font-size: 16px;
+    }
+
+    header.scrolled .brand-tagline {
+      display: none;
+    }
+
+    header.scrolled .logo {
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+    }
+
+    header.scrolled .topbar {
+      padding: 5px 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      background-color: var(--brand-yellow);
+      color: var(--brand-dark);
+      font-weight: 800;
+      font-size: 24px;
+      border-radius: var(--radius);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .brand-tagline {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 13px;
+    }
+
+    #navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    #navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 0;
+      transition: color 0.3s;
+    }
+
+    #navbar a:hover {
+      color: var(--brand-yellow);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* ========================================================
+    Hero Section
+    ======================================================== */
+    .hero {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 40px;
+      padding: 60px 0 80px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      line-height: 1.1;
+      color: rgb(78, 78, 78);
+    }
+
+    .hero .lead {
+      max-width: 600px;
+      color: rgba(240, 236, 236, 0.8);
+      margin-bottom: 25px;
+    }
+
+    .cta {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      border: 2px solid transparent;
+      background-color: var(--brand-yellow);
+      color: var(--brand-dark);
+    }
+
+    .btn:hover {
+      background-color: #f7ca03;
+      /* Slightly darker yellow */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* FIX: Outline button hover syntax */
+    .btn.outline {
+      background: transparent;
+      border-color: var(--brand-yellow);
+      color: var(--brand-yellow);
+    }
+
+    .btn.outline:hover {
+      background-color: rgba(255, 215, 0, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: var(--brand-yellow);
+      border-color: var(--brand-yellow);
+    }
+
+    .hero-fact-row {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hero-fact-card {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      max-width: 520px;
+      padding: 15px;
+    }
+
+    .hero-fact-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--brand-yellow), var(--brand-accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--brand-dark);
+    }
+
+    .hero-fact-title {
+      color: var(--muted);
+    }
+
+    .hero-fact-text {
+      color: var(--muted);
+    }
+
+    .hero-card-aside {
+      background-color: var(--card-bg);
+      color: var(--brand-dark);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card-desc {
+      margin: 6px 0 12px 0;
+      color: var(--muted);
+    }
+
+    .hero-card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hero-card-item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ========================================================
+    Facts Bar (FIXED: Readability)
+    ======================================================== */
+    .facts-bar {
+      background-color: var(--brand-dark);
+      padding: 30px 0;
+      margin-top: -60px;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+
+    /* FIX: Number color for contrast */
+    .fact-number {
+      color: var(--brand-yellow);
+      /* HIGHLIGHT: Use the yellow accent */
+      font-size: 2.5em;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    /* FIX: Label color for readability */
+    .fact-label {
+      color: rgba(255, 255, 255, 0.7);
+      /* Light gray for readability on dark background */
+      font-weight: 600;
+      margin-top: 5px;
+    }
+
+    /* ========================================================
+    About Section
+    ======================================================== */
+    #about {
+      background-color: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    /* ========================================================
+    Services Section (Hover Effect)
+    ======================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-card i {
+      font-size: 3em;
+      color: var(--brand-yellow);
+      margin-bottom: 15px;
+      transition: color 0.3s;
+    }
+
+    .service-card:hover i {
+      color: var(--brand-dark);
+      background-color: var(--brand-yellow);
+      padding: 5px;
+      border-radius: 50%;
+    }
+
+    .service-card h3 {
+      color: var(--brand-dark);
+      margin-bottom: 10px;
+    }
+
+    /* ========================================================
+    Projects Showcase (Image Hover Effect)
+    ======================================================== */
+    .projects-section {
+      background: white;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.3s;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ========================================================
+        Projects Showcase (FIXED: Softened Overlay)
+       ======================================================== */
+
+    .project-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      /* MODIFIED: Reduced Opacity (0.6 instead of 0.8) and made color slightly gray */
+      background: linear-gradient(to top, rgba(30, 30, 30, 0.6) 0%, rgba(30, 30, 30, 0.3) 50%, transparent 100%);
+
+      color: white;
+      padding: 15px;
+      transition: background 0.3s ease, transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100%;
+      padding-bottom: 20px;
+    }
+
+    .project-card:hover .project-overlay {
+      /* MODIFIED: Hover state opacity is now softer (0.7 instead of 0.9) */
+      background: linear-gradient(to top, rgba(30, 30, 30, 0.7) 0%, rgba(30, 30, 30, 0.4) 50%, transparent 100%);
+    }
+
+    .project-overlay h3 {
+      margin-bottom: 0;
+      /* Ensures the title sits right at the bottom */
+      font-size: 1.4em;
+      color: white;
+    }
+
+    /* ========================================================
+    Project List & Timeline (Legacy)
+    ======================================================== */
+    .project-filter-buttons {
+      margin-bottom: 25px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .projects-list.grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* ========================================================
+    Projects Listing & Timeline Hover Effects (UPDATED)
+    ======================================================== */
+
+    .projects-list .project {
+      border: 1px solid var(--bg-light);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      overflow: hidden;
+    }
+
+    .projects-list .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      border-color: var(--brand-yellow);
+    }
+
+
+    .projects-list .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .projects-list .project:hover img {
+      transform: scale(1.14);
+    }
+
+    .projects-list .project .meta {
+      padding: 15px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      display: block;
+    }
+
+    /* Timeline Section Styles */
+    .timeline-card {
+      margin-top: 30px;
+    }
+
+    .timeline-list {
+      border-left: 2px solid var(--bg-light);
+      padding-left: 15px;
+      margin-top: 20px;
+    }
+
+    .timeline-list .item {
+      position: relative;
+      margin-bottom: 25px;
+      border-left: 5px solid transparent;
+      padding: 5px 0 5px 15px;
+      cursor: pointer;
+      transition: background 0.3s, border-left 0.3s;
+      border-radius: 4px;
+    }
+
+    .timeline-list .item:hover {
+      background: var(--bg-light);
+      border-left: 5px solid var(--brand-yellow);
+    }
+
+    .timeline-list .item.active {
+      background: #f0f0f5;
+      font-weight: 700;
+      border-left: 5px solid var(--brand-yellow);
+    }
+
+    .timeline-list .dot {
+      position: absolute;
+      left: -22px;
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--brand-yellow);
+      border: 3px solid white;
+    }
+
+    /* ========================================================
+    Modals (Shared Styles)
+    ======================================================== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: auto;
+      padding: 20px;
+      border-radius: var(--radius);
+      position: relative;
+      max-width: 900px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    #projectModal .modal-content img {
+      width: 100%;
+      height: auto;
+      max-height: 50vh;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border-radius: var(--radius);
+    }
+
+    #projectModal .modal-title {
+      color: var(--brand-dark);
+      margin-top: 0;
+    }
+
+    .close-btn {
+      color: var(--muted);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+      color: var(--brand-dark);
+      text-decoration: none;
+    }
+
+    .gallery-modal .gallery-content {
+      position: relative;
+      max-width: 900px;
+      width: 90%;
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+    }
+
+    .gallery-modal #galleryImage {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: cover;
+      border-radius: var(--radius) var(--radius) 0 0;
+      display: block;
+    }
+
+    .gallery-modal .project-overlay {
+      position: static;
+      background: white;
+      color: var(--text-color);
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    /* ========================================================
+    Our Journey Timeline (Hover Effect)
+    ======================================================== */
+    .timeline-section {
+      background: white;
+    }
+
+    .timeline-content {
+      padding: 20px 30px;
+      background: var(--card-bg);
+      position: relative;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.3s, border-color 0.3s;
+      border: 1px solid transparent;
+    }
+
+    .timeline-content:hover {
+      border-color: var(--brand-accent);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: var(--brand-yellow);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      transform: translateX(-100%);
+    }
+
+    .timeline-item.visible:nth-child(odd) {
+      transform: translateX(0);
+    }
+
+    .timeline-item .timeline-content {
+      padding: 20px 30px;
+      background: var(--card-bg);
+      position: relative;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-icon {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: var(--brand-accent);
+      border: 3px solid white;
+      border-radius: 50%;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-icon {
+      right: -20px;
+    }
+
+    .timeline-item:nth-child(even) .timeline-icon {
+      left: -20px;
+    }
+
+    /* ========================================================
+NEW FEATURE: CERTIFICATIONS GRID STYLING
+======================================================== 
+    #certifications-section {
+      padding: 60px 0;
+      background-color: white;
+      /* Use a clean background for logos 
+    }
+
+    .cert-title {
+      text-align: center;
+      font-size: 1.8em;
+      color: var(--brand-primary);
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    .cert-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      /* Center the entire row of logos 
+      align-items: center;
+      gap: 30px;
+      /* Space between logos 
+    }
+
+    .cert-item {
+      flex-basis: 150px;
+      /* Base size for each logo container 
+      max-width: 150px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .cert-item img {
+      /* Styles for the logo image itself 
+      width: 100%;
+      height: auto;
+      max-height: 80px;
+      object-fit: contain;
+      /* Ensures logos are not stretched */
+      /* Faint opacity to make it look like a watermark or official stamp 
+      opacity: 0.7;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .cert-item img:hover {
+      opacity: 1;
+      /* Full opacity on hover for focus 
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .cert-title {
+        font-size: 1.5em;
+      }
+
+      .cert-grid {
+        gap: 20px;
+      }
+
+      .cert-item {
+        flex-basis: 120px;
+      }
+    }
+    */
+
+    /* ========================================================
+    Team Section (FIXED: Hover Syntax)
+    ======================================================== */
+    .team-section {
+      background: var(--bg-light);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease-out;
+    }
+
+    /* FIX: Team card hover syntax (space removed) */
+    .team-card:hover {
+      transform: scale(1.03);
+    }
+
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid var(--brand-yellow);
+      transition: border-color 0.3s;
+    }
+
+    /* FIX: Team card image hover syntax (space removed) */
+    .team-card:hover img {
+      border-color: #f7ca03;
+      /* Slightly brighter yellow */
+    }
+
+    .team-card .role {
+      color: var(--brand-yellow);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      color: var(--brand-dark);
+      font-size: 1.2em;
+      margin: 0 5px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--brand-yellow);
+    }
+
+    /* ========================================================
+    Affiliations Section
+    ======================================================== */
+    .affiliation-section {
+      background: white;
+    }
+
+    .affiliations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      align-items: start;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .affiliation img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 8px;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+
+    .affiliation:hover img {
+      filter: grayscale(0%);
+    }
+
+    .affiliation-title {
+      color: var(--brand-dark);
+    }
+
+    .affiliation-detail {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ========================================================
+        Lead Quiz Styling
+       ======================================================== */
+    .quiz-progress-bar {
+      height: 10px;
+      background-color: #eee;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    #progress-indicator {
+      height: 100%;
+      background-color: var(--brand-yellow, #ffc107);
+      /* Use your brand color */
+      transition: width 0.3s ease-in-out;
+    }
+
+    .quiz-progress-text {
+      text-align: right;
+      font-size: 0.9em;
+      color: var(--muted, #666);
+      margin-bottom: 25px;
+    }
+
+    .quiz-step h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: var(--brand-dark);
+    }
+
+    .option-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .quiz-option {
+      /* Base style for quiz buttons */
+      width: 100%;
+      text-align: left;
+      background-color: white;
+      color: var(--brand-dark);
+      border: 1px solid #ccc;
+      padding: 12px 20px;
+      border-radius: 8px;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .quiz-option:hover {
+      background-color: #f5f5f5;
+      border-color: var(--brand-yellow);
+    }
+
+    .quiz-option.selected {
+      background-color: var(--brand-yellow);
+      color: white;
+      border-color: var(--brand-yellow);
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #quiz-contact-form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    /* ========================================================
+    Contact Section
+    ======================================================== */
+    #contact {
+      background: var(--bg-light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 30px;
+    }
+
+    #contact form input,
+    #contact form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      background: white;
+    }
+
+    #contact form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .affiliation-numbers {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-cta-buttons {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .outline-yellow-btn {
+      background: transparent;
+      border: 2px solid var(--brand-yellow);
+      color: var(--brand-dark);
+    }
+
+    .map-iframe {
+      border-radius: var(--radius);
+      margin-top: 20px;
+    }
+
+    .form-submit-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .form-message {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ========================================================
+    Footer (FIXED: Socials)
+    ======================================================== */
+    .legacy-footer {
+      background-color: var(--brand-dark);
+      color: white;
+      padding: 15px 0;
+    }
+
+    .footer-legacy-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-legacy-detail {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+    }
+
+    .footer {
+      background-color: var(--brand-dark);
+      color: white;
+      padding-top: 50px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .footer-col h3,
+    .footer-col h4 {
+      margin-bottom: 20px;
+      color: var(--brand-yellow);
+    }
+
+    .footer-col p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95em;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--brand-yellow);
+    }
+
+    .footer-contact li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ========================================================
+       FOOTER SOCIALS STYLING
+       ======================================================== */
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      /* Spacing between icons */
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      /* Subtle divider */
+    }
+
+    .footer-socials a {
+      /* Set the icon color to white to be visible on the dark background */
+      color: white;
+      font-size: 1.5em;
+      /* Make icons a good size */
+      transition: color 0.3s;
+    }
+
+    .footer-socials a:hover {
+      /* Use the accent color on hover */
+      color: var(--brand-accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 0.85em;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ========================================================
+    Back to Top Button (Arrow Effect)
+    ======================================================== */
+    .back-to-top-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      z-index: 999;
+      cursor: pointer;
+      display: none;
+      background-color: var(--brand-dark);
+      color: white;
+      font-size: 1.2em;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+
+      /* Ensure the icon is centered */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .back-to-top-btn:hover {
+      background-color: var(--brand-accent);
+      color: var(--brand-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-to-top-btn i {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .back-to-top-btn:hover i {
+      transform: translateY(-2px);
+    }
+
+    /* ========================================================
+    Media Queries for Mobile
+    ======================================================== */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-bottom: 30px;
+      }
+
+      .hero h1 {
+        font-size: 2.5em;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Facts Bar adjustment */
+      .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 10px;
+      }
+
+      /* Timeline adjustment for mobile */
+      .timeline::after {
+        left: 20px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 10px;
+      }
+
+      .timeline-item:nth-child(even),
+      .timeline-item:nth-child(odd) {
+        left: 0;
+        transform: translateX(0);
+      }
+
+      .timeline-item:nth-child(odd) .timeline-icon,
+      .timeline-item:nth-child(even) .timeline-icon {
+        left: 0;
+        margin-left: -30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+
+      /* Mobile Navigation */
+      #navbar ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(26, 26, 26, 0.95);
+        padding: 10px 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 500;
+      }
+
+      #navbar ul.active {
+        display: flex;
+      }
+
+      #navbar li {
+        text-align: center;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .topbar {
+        padding: 10px 0 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <a href="#top" class="logo">G</a>
+          <div>
+            <div class="brand-title">Gabekile Projects</div>
+            <small class="brand-tagline">
+              General Building • Civil • Mechanical • Electrical • Project Management
+            </small>
+          </div>
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="navbar-menu">
+          ☰
+        </button>
+
+        <nav id="navbar">
+          <ul id="navbar-menu">
+            <li><a href="#about" data-scroll-to="about">About</a></li>
+            <li><a href="#services" data-scroll-to="services">Services</a></li>
+            <li><a href="portfolio.html">Projects</a></li>
+            <li><a href="#team" data-scroll-to="team">Team</a></li>
+            <li><a href="#affiliation" data-scroll-to="affiliation">Affiliations</a></li>
+            <li><a href="#contact" data-scroll-to="contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="hero">
+        <div>
+          <h1>Building the future, shaping communities.</h1>
+          <p class="lead">Gabekile Projects is a proudly black-owned construction and engineering company established in
+            2018. We deliver high-quality general building, civil, mechanical and electrical engineering, and
+            professional project management across the region.</p>
+          <div class="cta">
+            <button class="btn" data-scroll-to="contact">Get a Quote</button>
+            <a href="portfolio.html"><button class="btn outline">Our
+                Projects</button></a>
+          </div>
+
+          <div class="hero-fact-row">
+            <div class="card hero-fact-card">
+              <div class="hero-fact-icon">CIDB</div>
+              <div>
+                <div class="hero-fact-title">CIDB Grades</div>
+                <div class="hero-fact-text">4CE PE, 4GB PE, 3ME PE — General building, Civil, Mechanical &
+                  Electrical</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card hero-card-aside">
+          <h3>Quick Facts</h3>
+          <p class="hero-card-desc">Founded <strong>2018</strong> — Proudly Black-Owned — Reg:
+            <strong>2018/497520/07</strong>
+          </p>
+          <div class="hero-card-list">
+            <div class="hero-card-item"><small class="muted">Head
+                Office</small><strong>White River, 1200</strong></div>
+            <div class="hero-card-item"><small class="muted">Phone</small><strong>+27 79 515
+                7458</strong></div>
+            <div class="hero-card-item"><small class="muted">Email</small><strong>info@gabekilepro.co.za</strong></div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <!--Facts bar counter-->
+    <section class="facts-bar">
+      <div class="container">
+        <div class="facts-grid">
+          <div class="fact fade-in">
+            <div class="fact-number">4GB/4CE</div>
+            <div class="fact-label">CIDB Grading</div>
+          </div>
+          <div class="fact fade-in">
+            <div class="fact-number counter" data-target="6">0</div>
+            <div class="fact-label">Years Experience</div>
+          </div>
+          <div class="fact fade-in">
+            <div class="fact-number counter" data-target="100">0</div>
+            <div class="fact-label">Projects Completed</div>
+          </div>
+          <div class="fact fade-in">
+            <div class="fact-number counter" data-target="85">0</div>
+            <div class="fact-label">Local Sourcing</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </header>
+
+  <main>
+    <section id="about" class="container">
+      <div class="about-grid">
+        <div class="card fade-in">
+          <h2>About Gabekile Projects</h2>
+          <p>Gabekile Projects was founded in 2018 by CEO <strong>Mr. Keith Mbatsane</strong> (Civil Structural
+            Engineer).The company provides a wide range of services including general building, civil,
+            electrical and mechanical engineering, and project management. Our projects are completed on time, within
+            budget, and to the highest standards.</p>
+
+          <h3 class="mt-14">CEO Statement</h3>
+          <blockquote class="blockquote-highlight">"Welcome
+            to Gabekile Projects... I am proud to lead this team and look forward to continuing to deliver value to our
+            clients, community and partners." — <em>Mr. Keith Mbatsane</em></blockquote>
+        </div>
+
+        <div class="card fade-in">
+          <h2>Vision & Mission</h2>
+          <p><strong>Vision:</strong> To be a world-class construction, civil engineering, and project management
+            company, shaping the future of infrastructure development and community growth, locally and globally.</p>
+          <p><strong>Mission:</strong> To provide exceptional construction, civil engineering, and project management
+            services that exceed client expectations, while promoting sustainable practices, innovation, and community
+            development.</p>
+
+          <h3 class="mt-14">Competitive Advantage</h3>
+          <p>We bring deep technical expertise, strong relationships with clients and suppliers, and a focus on safety,
+            quality and timely delivery. Our ability to tailor solutions for complex projects sets us apart.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services-section">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-intro">
+          At Gabekile Projects, we provide comprehensive engineering and construction solutions tailored to meet client
+          needs — on time, within budget, and with excellence.
+        </p>
+
+        <div class="services-grid">
+          <div class="service-card fade-in">
+            <i class="fa-solid fa-building"></i>
+            <h3>General Building</h3>
+            <p>
+              Expert construction and maintenance of residential, commercial, and industrial buildings with guaranteed
+              quality and safety.
+            </p>
+          </div>
+
+          <div class="service-card fade-in">
+            <i class="fa-solid fa-road"></i>
+            <h3>Civil Engineering</h3>
+            <p>
+              Infrastructure development including roads, bridges, stormwater drainage, and water reticulation projects.
+            </p>
+          </div>
+
+          <div class="service-card fade-in">
+            <i class="fa-solid fa-plug"></i>
+            <h3>Electrical Engineering</h3>
+            <p>
+              Professional electrical installations, maintenance, and energy-efficient solutions for industrial and
+              commercial projects.
+            </p>
+          </div>
+
+          <div class="service-card fade-in">
+            <i class="fa-solid fa-cogs"></i>
+            <h3>Mechanical Engineering</h3>
+            <p>
+              High-quality fabrication, machinery installation, and mechanical maintenance across diverse industries.
+            </p>
+          </div>
+
+          <div class="service-card fade-in">
+            <i class="fa-solid fa-helmet-safety"></i>
+            <h3>Project Management</h3>
+            <p>
+              Complete project planning and supervision — ensuring delivery that meets both client expectations and
+              compliance standards.
+            </p>
+          </div>
+
+          <div class="service-card fade-in">
+            <i class="fa-solid fa-recycle"></i>
+            <h3>Environmental & Sustainability</h3>
+            <p>
+              We prioritize sustainability through eco-friendly practices and community-based initiatives in every
+              project we deliver.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--
+    <section id="projects-showcase" class="projects-section">
+      <div class="container">
+        <h2 class="section-title">Project Highlights</h2>
+        <p class="section-intro">
+          A showcase of some of our completed and ongoing projects that reflect our expertise, dedication, and attention
+          to detail.
+        </p>
+
+        <div class="projects-grid">
+          <div class="project-card fade-in" data-project-id="civil1"
+            onclick="openGallery('images/civil eng.jpg', 'Civil Engineering', 'Durable civil infrastructure built for community development.')">
+            <img src="images/civil eng.jpg" alt="Road Construction Project">
+            <div class="project-overlay">
+              <h3>Civil Engineering</h3>
+            </div>
+          </div>
+
+          <div class="project-card fade-in" data-project-id="electrical1"
+            onclick="openGallery('images/electrical.jpg', 'Electrical Systems', 'Safe, efficient, and reliable power system solutions.')">
+            <img src="images/electrical.jpg" alt="Commercial Building Project">
+            <div class="project-overlay">
+              <h3>Mechanical</h3>
+            </div>
+          </div>
+
+          <div class="project-card fade-in" data-project-id="electrical2"
+            onclick="openGallery('images/1.jpg', 'Electrical Installations', 'Safe, efficient, and reliable power system solutions.')">
+            <img src="images/1.jpg" alt="Electrical Installation Project">
+            <div class="project-overlay">
+              <h3>Electrical</h3>
+            </div>
+          </div>
+
+          <div class="project-card fade-in" data-project-id="general1"
+            onclick="openGallery('images/3.jpg', 'General Building', 'Modern commercial facilities designed with precision.')">
+            <img src="images/3.jpg" alt="Modern commercial facility">
+            <div class="project-overlay">
+              <h3>General Building</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects-list" class="container">
+      <h2 class="section-title" style="text-align: left;">Detailed Project Listing</h2>
+      <p class="section-intro" style="text-align: left; max-width: 100%; margin-left: 0;">Selected projects and works
+        (from the company profile):</p>
+
+      <div id="projectFilter" class="project-filter-buttons">
+        <button class="filter-btn btn active" data-category="all">All</button>
+        <button class="filter-btn btn outline" data-category="civil">Civil</button>
+        <button class="filter-btn btn outline" data-category="mechanical">Mechanical</button>
+        <button class="filter-btn btn outline" data-category="electrical">Electrical</button>
+        <button class="filter-btn btn outline" data-category="general">General Building</button>
+      </div>
+
+      <div class="projects-list grid">
+        <div class="project card fade-in" data-category="general" data-title="MGT Headquarter Renovation"
+          data-desc="MGT headquarters renovation and extension works including structural refurbishments, finishes and site coordination."
+          data-timeline="Mar 2023 - Dec 2024" data-img="images/1.jpg">
+          <img src="images/1.jpg" alt="MGT headquarters renovations" />
+          <div class="meta">MGT Headquarter Renovation</div>
+        </div>
+
+        <div class="project card fade-in" data-category="civil" data-title="Mpumalanga Parliamentary Village"
+          data-desc="Works supervision for the Mpumalanga parliamentary village — overseeing civil and general building works to ensure schedule and quality."
+          data-timeline="Jan 2024 - Current" data-img="images/3.jpg">
+          <img src="images/3.jpg" alt="parliamentary village" />
+          <div class="meta">Mpumalanga Parliamentary Village</div>
+        </div>
+
+        <div class="project card fade-in" data-category="general" data-title="New Mapulaneng Hospital Supervision"
+          data-desc="Supervision of New Mapulaneng Hospital works — coordination, quality control, and snag attendance."
+          data-timeline="Sep 2022 - Current" data-img="images/2.jpg">
+          <img src="images/2.jpg" alt="hospital works" />
+          <div class="meta">New Mapulaneng Hospital Supervision</div>
+        </div>
+
+        <div class="project card fade-in" data-category="general" data-title="Tanzania Residential Projects"
+          data-desc="Residential project management and construction works carried out in Tanzania, covering planning through completion."
+          data-timeline="Jan 2021 - Dec 2023" data-img="images/4.jpg">
+          <img src="images/4.jpg" alt="residential works" />
+          <div class="meta">Tanzania Residential Projects</div>
+        </div>
+
+        <div class="project card fade-in" data-category="mechanical" data-title="JMA Structural Steel Works"
+          data-desc="Structural steel fabrication and installation works for JMA projects (structural steel scope)."
+          data-timeline="Feb 2025 - Jun 2025"
+          data-img="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=60">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=60"
+            alt="structural steel" />
+          <div class="meta">JMA Structural Steel Works</div>
+        </div>
+
+        <div class="project card fade-in" data-category="electrical" data-title="McCain Foods Works Supervision"
+          data-desc="Works supervision and shutdown construction works for McCain Foods (South Africa)."
+          data-timeline="Jul 2025 - Current"
+          data-img="https://images.unsplash.com/photo-1526506149571-39b6bb3c0f18?auto=format&fit=crop&w=800&q=60">
+          <img src="https://images.unsplash.com/photo-1526506149571-39b6bb3c0f18?auto=format&fit=crop&w=800&q=60"
+            alt="factory" />
+          <div class="meta">McCain Foods Works Supervision</div>
+        </div>
+      </div>
+
+      <div class="card timeline-card">
+        <h3>Project Highlights & Timeline (Legacy)</h3>
+        <p class="timeline-intro-text">Click an item for more details.</p>
+        <div class="timeline-list">
+          <div class="item" data-title="Nyambi Residence" data-timeline="Feb 2019 – Jun 2020"
+            data-desc="Complete construction of a private residence, project managed from foundation to final handover.">
+            <span class="dot"></span>
+            <div><strong>Nyambi Residence</strong> — Feb 2019 – Jun 2020</div>
+          </div>
+          <div class="item" data-title="Mbatsane Residence" data-timeline="Feb 2021 – Apr 2022"
+            data-desc="Residential renovation and extension project focusing on structural and aesthetic upgrades.">
+            <span class="dot"></span>
+            <div><strong>Mbatsane Residence</strong> — Feb 2021 – Apr 2022</div>
+          </div>
+          <div class="item" data-title="BRT Wonderboom Supervision" data-timeline="Apr 2021 – Aug 2022"
+            data-desc="Supervision of the Bus Rapid Transit infrastructure works at Wonderboom station, ensuring compliance and quality control.">
+            <span class="dot"></span>
+            <div><strong>BRT Wonderboom Supervision</strong> — Apr 2021 – Aug 2022</div>
+          </div>
+          <div class="item" data-title="MGT Headquarters Renovations" data-timeline="Mar 2023 – Dec 2024"
+            data-desc="MGT headquarters renovation and extension works including structural refurbishments, finishes and site coordination.">
+            <span class="dot"></span>
+            <div><strong>MGT Headquarters Renovations</strong> — Mar 2023 – Dec 2024</div>
+          </div>
+          <div class="item" data-title="JMA Structural Steel" data-timeline="Feb 2025 – Jun 2025"
+            data-desc="Structural steel fabrication and installation works for JMA projects (structural steel scope).">
+            <span class="dot"></span>
+            <div><strong>JMA Structural Steel</strong> — Feb 2025 – Jun 2025</div>
+          </div>
+          <div class="item" data-title="McCain Foods" data-timeline="Jul 2025 – Current"
+            data-desc="Works supervision and shutdown construction works for McCain Foods (South Africa).">
+            <span class="dot"></span>
+            <div><strong>McCain Foods</strong> — Jul 2025 – Current</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="timeline" class="timeline-section">
+      <div class="container">
+        <h2 class="section-title">Our Journey</h2>
+        <p class="section-intro">
+          Since our founding in 2018, Gabekile Projects has continuously grown — delivering excellence, empowering
+          communities, and building the future.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item fade-in">
+            <div class="timeline-icon"><i class="fa-solid fa-flag"></i></div>
+            <div class="timeline-content">
+              <h3>2018 — Company Founded</h3>
+              <p>Gabekile Projects was officially registered and began operations in the construction and engineering
+                sectors.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item fade-in">
+            <div class="timeline-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+            <div class="timeline-content">
+              <h3>2019 — First Major Contract</h3>
+              <p>Completed our first large-scale municipal building project — establishing our reputation for quality
+                and reliability.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item fade-in">
+            <div class="timeline-icon"><i class="fa-solid fa-road"></i></div>
+            <div class="timeline-content">
+              <h3>2020 — Civil Infrastructure Expansion</h3>
+              <p>Expanded into road and stormwater projects, supporting local community infrastructure development.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item fade-in">
+            <div class="timeline-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="timeline-content">
+              <h3>2022 — Electrical & Mechanical Division</h3>
+              <p>Introduced electrical and mechanical engineering services to broaden our capabilities.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item fade-in">
+            <div class="timeline-icon"><i class="fa-solid fa-trophy"></i></div>
+            <div class="timeline-content">
+              <h3>2024 — 100+ Successful Projects</h3>
+              <p>Celebrated the completion of over 100 projects — proudly contributing to South Africa’s growth and
+                transformation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  -->
+
+    <!--Certificate
+    <section id="certifications-section">
+      <div class="container">
+        <h2 class="cert-title">Professional Affiliations & Certifications</h2>
+
+        <div class="cert-grid">
+          <div class="cert-item">
+            <img src="images/cibd.png" alt="Construction Industry Development Board Logo">
+          </div>
+          <div class="cert-item">
+            <img src="logo/cert-bee.png" alt="Broad-Based Black Economic Empowerment Certification">
+          </div>
+          <div class="cert-item">
+            <img src="logo/cert-sabs.png" alt="South African Bureau of Standards Certification">
+          </div>
+          <div class="cert-item">
+            <img src="logo/cert-masterbuilders.png" alt="Master Builders Association Logo">
+          </div>
+          <div class="cert-item">
+            <img src="logo/cert-iso9001.png" alt="ISO 9001 Quality Management Certification">
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer
+    style="background: var(--brand-primary); color: white; text-align: center; padding: 20px 0; font-size: 0.9em;">
+  </footer>
+  -->
+
+  <section id="clients" class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="card fade-in">
+        <h2>Our Clientele</h2>
+        <p>We serve a diverse mix of clients: Government departments, private developers, corporate entities,
+          residential clients, and non-profits. Our trusted relationships and tailored solutions keep clients
+          returning.</p>
+
+        <h3 class="mt-12">Affiliations & Registrations</h3>
+        <p>Company Reg: <strong>2018/497520/07</strong><br />VAT: <strong>4690305273</strong></p>
+      </div>
+
+      <div class="card fade-in">
+        <h2>Growth & Expansion Plan</h2>
+        <p><strong>Short-term:</strong> Expand into 2-3 new African countries, increase project portfolio by 30%, and
+          invest in digital transformation (by 2028).</p>
+        <p><strong>Mid-term:</strong> Presence in 5-7 international markets; diversify into sustainable infrastructure
+          (by 2031).</p>
+        <p><strong>Long-term:</strong> Operate in 10+ countries with industry recognition (by 2034).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="team-section">
+    <div class="container">
+      <h2 class="section-title">Meet Our Team</h2>
+      <p class="section-intro">
+        Our experienced and dedicated professionals lead Gabekile Projects with a commitment to quality, innovation,
+        and excellence.
+      </p>
+
+      <div class="team-grid">
+        <div class="team-card fade-in">
+          <img src="images/1.jpg" alt="Mr. Keith Mbatsane, Founder & CEO">
+          <h3>Mr. Keith Mbatsane</h3>
+          <p class="role">Founder & CEO</p>
+          <p>
+            Visionary leader and civil engineer with a passion for sustainable development and community upliftment.
+          </p>
+          <div class="social-icons">
+            <a href="#" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" aria-label="Instagram profile"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        <!--
+          <div class="team-card fade-in">
+            <img src="images/2.jpg" alt="Brad Maredi, Operations Director">
+            <h3>Brad Maredi</h3>
+            <p class="role">Operations Director</p>
+            <p>
+              Ensures smooth project execution with a strong background in construction management and logistics.
+            </p>
+            <div class="social-icons">
+              <a href="#" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#" aria-label="Instagram profile"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          -->
+        <div class="team-card fade-in">
+          <img src="images/3.jpg" alt="Project Engineer">
+          <h3>gabekileprojects</h3>
+          <p class="role">Project Engineer</p>
+          <p>
+            Expert in structural and electrical systems, dedicated to technical precision and innovation in design.
+          </p>
+          <div class="social-icons">
+            <a href="#" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" aria-label="Instagram profile"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="affiliation" class="affiliation-section">
+    <div class="container">
+      <h2 class="section-title">Our Affiliation Bodies</h2>
+      <div class="affiliations-grid">
+        <div class="affiliation fade-in">
+          <img src="images/Affiliates/cipc.jpeg" alt="CIPC Logo">
+          <div class="affiliation-title"><strong>Companies & Intellectual Property Commission</strong></div>
+          <small class="affiliation-detail">Reg No: 2018/497520/07</small>
+        </div>
+
+        <div class="affiliation fade-in">
+          <img src="images/Affiliates/csd.png" alt="CSD Logo">
+          <div class="affiliation-title"><strong>Central Supplier Database</strong></div>
+          <small class="affiliation-detail">MAAA0765334</small>
+        </div>
+
+        <div class="affiliation fade-in">
+          <img src="images/Affiliates/fnb.png" alt="FNB Logo">
+          <div class="affiliation-title"><strong>First National Bank</strong></div>
+          <small class="affiliation-detail">62283633425</small>
+        </div>
+
+        <div class="affiliation fade-in">
+          <img src="images/Affiliates/cf.png" alt="Compensation Fund Logo">
+          <div class="affiliation-title"><strong>Compensation Fund</strong></div>
+          <small class="affiliation-detail">990001408602</small>
+        </div>
+
+        <div class="affiliation fade-in">
+          <img src="images/Affiliates/nhbrc.png" alt="NHBRC Logo">
+          <div class="affiliation-title"><strong>National Home Builders Registration Council</strong></div>
+          <small class="affiliation-detail">4000060607</small>
+        </div>
+
+        <div class="affiliation fade-in">
+          <img src="images/Affiliates/sars.jpeg" alt="SARS Logo">
+          <div class="affiliation-title"><strong>South African Revenue Service</strong></div>
+          <small class="affiliation-detail">VAT: 4690305273</small>
+        </div>
+
+        <div class="affiliation fade-in">
+          <img src="images/Affiliates/cibd.png" alt="CIDB Logo">
+          <div class="affiliation-title"><strong>Construction Industry Development Board</strong></div>
+          <small class="affiliation-detail">4GB / 4CE PE</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Quiz thing-->
+  <section id="lead-quiz" class="container" style="padding: 60px 20px;">
+    <h2 class="section-title">Start Your Project Journey</h2>
+    <p class="section-intro">Answer a few quick questions to get a personalized quote and timeline for your
+      construction or engineering project.</p>
+
+    <div id="quiz-container" class="card" style="box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 30px;">
+
+      <div class="quiz-progress-bar">
+        <div id="progress-indicator" style="width: 0%;"></div>
+      </div>
+      <p class="quiz-progress-text">Step <span id="current-step">1</span> of <span id="total-steps"></span></p>
+
+      <div id="quiz-steps">
+
+        <div class="quiz-step" data-step="1">
+          <h3>1. What type of project are you planning?</h3>
+          <div class="option-grid">
+            <button class="btn quiz-option" data-score="10" data-value="Commercial Building">Commercial
+              Building</button>
+            <button class="btn quiz-option" data-score="8" data-value="Residential Development">Residential
+              Development</button>
+            <button class="btn quiz-option" data-score="5" data-value="Civil/Infrastructure">Civil/Infrastructure
+              (Roads, Pipes)</button>
+            <button class="btn quiz-option" data-score="3" data-value="Specialized Mechanical/Electrical">Specialized
+              M&E Works</button>
+            <button class="btn quiz-option" data-score="1" data-value="Maintenance/Small Reno">Maintenance/Small
+              Reno</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="2" style="display:none;">
+          <h3>2. What is your estimated project budget?</h3>
+          <div class="option-grid">
+            <button class="btn quiz-option" data-score="15" data-value="R2M+">R2,000,000 +</button>
+            <button class="btn quiz-option" data-score="10" data-value="R500K - R2M">R500,000 - R2,000,000</button>
+            <button class="btn quiz-option" data-score="5" data-value="R100K - R500K">R100,000 - R500,000</button>
+            <button class="btn quiz-option" data-score="0" data-value="Under R100K">Under R100,000</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="3" style="display:none;">
+          <h3>3. What is your ideal project start date?</h3>
+          <div class="option-grid">
+            <button class="btn quiz-option" data-score="15" data-value="Within 3 Months">Ready to Start (Within 3
+              Months)</button>
+            <button class="btn quiz-option" data-score="10" data-value="3 to 6 Months">3 to 6 Months</button>
+            <button class="btn quiz-option" data-score="5" data-value="6 to 12 Months">6 to 12 Months</button>
+            <button class="btn quiz-option" data-score="0" data-value="Just Researching">Just Researching / 1
+              Year+</button>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="4" id="final-form-step" style="display:none;">
+          <h3>Great! Here's Your Project Readiness Summary:</h3>
+          <div id="score-summary" style="margin-bottom: 20px; padding: 15px; border-radius: 8px; background: #f9f9f9;">
+          </div>
+
+          <form id="quiz-contact-form">
+            <input type="text" id="quiz-name" placeholder="Your Name" required />
+            <input type="email" id="quiz-email" placeholder="Email Address" required />
+            <input type="tel" id="quiz-phone" placeholder="Phone (Optional)" />
+            <input type="hidden" id="quiz-score-data" name="lead_data" />
+
+            <button type="submit" class="btn">Send Quote Request</button>
+            <p id="form-message" style="margin-top: 10px; color: green; display: none;">Message sent!</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <canvas id="confetti-canvas"
+      style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none;"></canvas>
+  </section>
+
+
+  <section id="contact" class="container">
+    <h2 class="section-title" style="text-align: left;">Get In Touch</h2>
+    <p class="section-intro" style="text-align: left; max-width: 100%; margin-left: 0;">Contact us for quotes,
+      partnerships or general enquiries.</p>
+    <div class="contact-grid">
+      <div class="card fade-in">
+        <h3>Contact Details</h3>
+        <p><strong>Address:</strong> 30 Outenique, White River, 1200</p>
+        <p><strong>Phone:</strong> +27 79 515 7458</p>
+        <p><strong>Fax:</strong> 086 693 1652</p>
+        <p><strong>Email:</strong> info@gabekilepro.co.za</p>
+
+        <h4 class="mt-12">Affiliation Numbers</h4>
+        <p class="affiliation-numbers">MAAA0765334 — 4000006057 — 10240642 — 62783633425 — 990001490827
+        </p>
+
+        <div class="contact-cta-buttons">
+          <a class="btn" href="tel:+27795157458">Call Us Now</a>
+          <a class="btn outline-yellow-btn" href="pdf/GABEKILE PROJECTS BUSINESS PROFILE.pdf" download>Download
+            Profile (PDF)</a>
+        </div>
+      </div>
+
+     <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID_CODE" method="POST">
+          <input type="text" id="name" name="name" placeholder="Your name" required aria-label="Your name" />
+          <input type="email" id="email" name="_replyto" placeholder="Email" required aria-label="Your email address" />
+          <input type="text" id="subject" name="subject" placeholder="Subject" aria-label="Subject of your message" />
+          <textarea id="message" name="message" placeholder="Message" required aria-label="Your message"></textarea>
+          <div class="form-submit-row">
+            <button type="submit" class="btn">Send Message</button>
+            <div id="formMsg" class="form-message"></div>
+          </div>
+        </form>
+
+    <iframe src="https://maps.google.com/maps?q=30+Outenique+White+River+1200&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      width="230%" height="250" class="map-iframe" allowfullscreen loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <button id="backToTop" data-scroll-to="top" class="btn back-to-top-btn" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </section>
+
+  </main>
+
+  <footer class="legacy-footer">
+    <div class="container footer-legacy-content">
+      <div>
+        <div style="font-weight:800">Gabekile Projects</div>
+        <div class="footer-legacy-detail">30 Outenique, White River — info@gabekilepro.co.za</div>
+      </div>
+      <div class="footer-legacy-detail">© Gabekile Projects 2018 — 2025</div>
+    </div>
+  </footer>
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>Gabekile Projects</h3>
+        <p>
+          A proudly black-owned South African company providing quality
+          construction, civil, electrical, mechanical engineering, and project-management services since 2018.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about" data-scroll-to="about">About Us</a></li>
+          <li><a href="#services" data-scroll-to="services">Our Services</a></li>
+          <li><a href="portfolio.html">Projects</a></li>
+          <li><a href="#timeline" data-scroll-to="timeline">Our Journey</a></li>
+          <li><a href="#team" data-scroll-to="team">Team</a></li>
+          <li><a href="#affiliation" data-scroll-to="affiliation">Affiliations</a></li>
+          <li><a href="#contact" data-scroll-to="contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Info</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-location-dot"></i> 30 Outenique, White River</li>
+          <li><i class="fa-solid fa-phone"></i> +27 79 895 8972</li>
+          <li><i class="fa-solid fa-envelope"></i> info@gabekileprojects.co.za</li>
+        </ul>
+
+        <footer
+          style="background: var(--brand-primary); color: white; text-align: center; padding: 20px 0; font-size: 0.9em;">
+          <div class="container">
+
+            <div class="footer-socials">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Gabekile Projects (Pty) Ltd. All Rights Reserved.</p>
+      <p>Website designed by Gabekile Projects Web Team.</p>
+    </div>
+  </footer>
+
+  <div id="projectModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content" role="document">
+      <button id="modalClose" class="close-btn" aria-label="Close project details">×</button>
+      <h3 id="modalTitle" class="modal-title"></h3>
+      <img id="modalImage" src="" alt="Project image" />
+      <p id="modalDesc" class="meta"></p>
+      <p id="modalTimeline" class="meta" style="font-size:13px;color:var(--muted);margin-top:6px"></p>
+    </div>
+  </div>
+
+  <div id="galleryModal" class="modal gallery-modal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="galleryModalTitle">
+    <div class="gallery-content">
+      <span class="close-btn" onclick="closeGallery()" aria-label="Close gallery">×</span>
+      <h3 id="galleryModalTitle" class="visually-hidden">Project Gallery</h3>
+      <img id="galleryImage" src="" alt="Project Image">
+      <div id="galleryCaption" class="project-overlay"
+        style="position: static; opacity: 1; border-radius: 0 0 8px 8px;">
+        <h3 id="galleryTitle"></h3>
+        <p id="galleryDescription"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================
+    // 1. UTILITY FUNCTIONS
+    // =========================================================
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // NEW: Animated Number Counter Function (FIXED final '+' logic)
+    function animateCounter(el) {
+      // Stop if already animated
+      if (el.classList.contains('counted')) {
+        return;
+      }
+      el.classList.add('counted');
+
+      const target = +el.getAttribute('data-target');
+      const updateCount = () => {
+        const count = +el.innerText.replace(/[+%]/g, ''); // Clean current text for math
+        const speed = 200; // Animation duration (in steps)
+        const increment = target / speed;
+
+        if (count < target) {
+          const nextCount = Math.ceil(count + increment);
+
+          // Format the display (check for '%' or '+')
+          let displayValue = nextCount;
+          const label = el.parentElement.querySelector('.fact-label').textContent;
+
+          if (label.includes('Sourcing')) {
+            displayValue = nextCount + '%'; // Add percentage sign
+          } else if (label.includes('Years') && nextCount < target) {
+            displayValue = nextCount + '+'; // Show intermediate values for 6+
+          }
+
+          el.innerText = displayValue;
+          setTimeout(updateCount, 1);
+        } else {
+          // Ensure the final target value is set exactly (FIXED LOGIC HERE)
+          let finalValue = target;
+          const label = el.parentElement.querySelector('.fact-label').textContent;
+
+          if (label.includes('Sourcing')) {
+            finalValue = target + '%';
+          } else if (label.includes('Years')) { // Now correctly applies '+' to the final target
+            finalValue = target + '+';
+          }
+          el.innerText = finalValue;
+        }
+      };
+
+      updateCount();
+    }
+
+
+    // =========================================================
+    // 2. INTERSECTION OBSERVER (Fade-In & Counter Trigger)
+    // =========================================================
+
+    // This observer handles both the general fade-in AND the counter animation
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+
+          // Check if the intersecting element contains a counter
+          if (entry.target.classList.contains('fact')) {
+            entry.target.querySelectorAll('.counter').forEach(counterEl => {
+              animateCounter(counterEl); // Call the counter animation function
+            });
+          }
+
+          // Optional: Stop observing once visible (can remove if you want effects to rerun)
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    // Observe all fade-in elements AND the specific 'fact' container for the counter
+    document.querySelectorAll('.fade-in, .service-card, .timeline-item, .team-card, .affiliation, .fact').forEach(el => {
+      io.observe(el);
+    });
+
+    // =========================================================
+    // 3. SCROLL & HEADER LOGIC
+    // =========================================================
+
+    const backToTopBtn = document.getElementById('backToTop');
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+      // Back to Top Button visibility
+      if (backToTopBtn) {
+        backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none'; // Use 'flex' to re-display
+      }
+
+      // Sticky Header Shrink Logic
+      if (window.scrollY > 80) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+
+    // =========================================================
+    // 4. NAVIGATION & SMOOTH SCROLLING (Unified Handler)
+    // =========================================================
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbarMenu = document.getElementById('navbar-menu');
+
+    if (menuToggle && navbarMenu) {
+      menuToggle.addEventListener('click', () => {
+        navbarMenu.classList.toggle('active');
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+      });
+
+      // Close menu when a link is clicked
+      navbarMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navbarMenu.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Unified Smooth Scrolling Handler (handles all [data-scroll-to] elements)
+    function handleScrollTo(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('data-scroll-to');
+
+      if (targetId === 'top') {
+        scrollToTop();
+        return;
+      }
+
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Apply unified handler to all scroll anchors
+    document.querySelectorAll('[data-scroll-to]').forEach(anchor => {
+      anchor.addEventListener('click', handleScrollTo);
+    });
+
+
+    // =========================================================
+    // 5. PROJECT FILTERING (FIXED: Outline Class)
+    // =========================================================
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.projects-list .project');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button state (FIXED)
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.classList.add('outline'); // Ensure all non-active are outline
+        });
+
+        button.classList.add('active');
+        button.classList.remove('outline'); // Ensure active button is NOT outline
+
+        const category = button.getAttribute('data-category');
+
+        projects.forEach(project => {
+          const projectCategory = project.getAttribute('data-category');
+          if (category === 'all' || category === projectCategory) {
+            project.style.display = 'block';
+          } else {
+            project.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // =========================================================
+    // 6. MODAL LOGIC (New implementations)
+    // =========================================================
+
+    // --- Project Detail Modal (#projectModal) ---
+
+    // Event Listeners for Project Card Clicks
+    document.querySelectorAll('.projects-list .project').forEach(project => {
+      project.addEventListener('click', function () {
+        openProjectModal(this);
+      });
+    });
+
+    // Event Listeners for Legacy Timeline Clicks
+    document.querySelectorAll('.timeline-list .item').forEach(item => {
+      item.addEventListener('click', function () {
+        // Mock object to handle timeline data attributes
+        const mockProject = {
+          getAttribute: (attr) => {
+            if (attr === 'data-title') return item.getAttribute('data-title');
+            if (attr === 'data-desc') return item.getAttribute('data-desc');
+            if (attr === 'data-timeline') return item.getAttribute('data-timeline');
+            // Fallback image for timeline items
+            if (attr === 'data-img') return 'https://via.placeholder.com/900x400?text=Project+Timeline+Detail';
+          }
+        };
+        openProjectModal(mockProject);
+      });
+    });
+
+
+    function openProjectModal(projectElement) {
+      const modal = document.getElementById('projectModal');
+      const title = projectElement.getAttribute('data-title');
+      const desc = projectElement.getAttribute('data-desc');
+      const timeline = projectElement.getAttribute('data-timeline');
+      const imgSrc = projectElement.getAttribute('data-img');
+
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalImage').src = imgSrc;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalTimeline').textContent = timeline;
+
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close Modal Function (Centralized)
+    function closeModal() {
+      const modal = document.getElementById('projectModal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Modal Close Handlers
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    window.addEventListener('click', (event) => {
+      if (event.target.id === 'projectModal') {
+        closeModal();
+      }
+    });
+
+
+    // --- Gallery Modal (#galleryModal) ---
+
+    // Global function used by the HTML onclick attributes in #projects-showcase
+    function openGallery(imgSrc, title, desc) {
+      const modal = document.getElementById('galleryModal');
+
+      document.getElementById('galleryImage').src = imgSrc;
+      document.getElementById('galleryTitle').textContent = title;
+      document.getElementById('galleryDescription').textContent = desc;
+
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Global function used by the HTML close button in #galleryModal
+    function closeGallery() {
+      const modal = document.getElementById('galleryModal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Gallery Modal Close Handler (for outside click)
+    window.addEventListener('click', (event) => {
+      if (event.target.id === 'galleryModal') {
+        closeGallery();
+      }
+    });
+
+    // =========================================================
+    // 7. FORM SUBMISSION (Placeholder)
+    // =========================================================
+
+    const contactForm = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        formMsg.textContent = 'Sending message...';
+        formMsg.style.color = 'var(--brand-yellow)';
+
+        // Simulate form submission success/failure after a delay
+        setTimeout(() => {
+          const success = true; // Use a real check here (e.g., fetch result)
+          if (success) {
+            formMsg.textContent = 'Thank you! Your message has been sent.';
+            formMsg.style.color = 'green';
+            contactForm.reset(); // Clear the form
+          } else {
+            formMsg.textContent = 'Error: Could not send message. Please try again.';
+            formMsg.style.color = 'red';
+          }
+        }, 1500);
+      });
+    }
+
+    // =========================================================
+    // 9. MULTI-STEP LEAD QUIZ LOGIC
+    // =========================================================
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const quizSteps = document.querySelectorAll('.quiz-step');
+      const totalSteps = quizSteps.length;
+      const progressIndicator = document.getElementById('progress-indicator');
+      const currentStepText = document.getElementById('current-step');
+      const totalStepsText = document.getElementById('total-steps');
+      const optionButtons = document.querySelectorAll('.quiz-option');
+      const finalForm = document.getElementById('quiz-contact-form');
+      const scoreSummary = document.getElementById('score-summary');
+
+      let currentStep = 1;
+      let totalScore = 0;
+      let quizData = {};
+
+      totalStepsText.textContent = totalSteps - 1; // Exclude the final form step from the count
+
+      // --- Progress and Navigation Logic ---
+      function updateProgress() {
+        // Calculate progress based on completed question steps (excluding the final form)
+        const progress = Math.min((currentStep - 1) / (totalSteps - 1), 1) * 100;
+        progressIndicator.style.width = `${progress}%`;
+        currentStepText.textContent = Math.min(currentStep, totalSteps - 1);
+      }
+
+      function showStep(step) {
+        quizSteps.forEach(el => {
+          el.style.display = (parseInt(el.getAttribute('data-step')) === step) ? 'block' : 'none';
+        });
+
+        if (step === totalSteps) {
+          handleQuizCompletion();
+        } else {
+          updateProgress();
+        }
+      }
+
+      // --- Option Selection Handler ---
+      optionButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          // Unselect all other options for the current step
+          const currentStepEl = this.closest('.quiz-step');
+          currentStepEl.querySelectorAll('.quiz-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
+
+          // Select the clicked option
+          this.classList.add('selected');
+
+          // Store data and score
+          const stepId = `step${currentStep}`;
+          const score = parseInt(this.getAttribute('data-score'));
+          const value = this.getAttribute('data-value');
+
+          // Record data
+          quizData[stepId] = { score, value, question: currentStepEl.querySelector('h3').textContent };
+
+          // Move to the next step after a short delay
+          setTimeout(() => {
+            currentStep++;
+            showStep(currentStep);
+          }, 300);
+        });
+      });
+
+      // --- Conditional Logic and Completion ---
+      function handleQuizCompletion() {
+        // 1. Calculate Total Score
+        totalScore = Object.values(quizData).reduce((sum, item) => sum + item.score, 0);
+        const maxScore = 40; // Max possible score: 10 + 15 + 15
+
+        // 2. Conditional Readiness Score Logic
+        let readinessLevel = '';
+        let readinessColor = '';
+        let readinessMessage = '';
+
+        if (totalScore >= 35) { // High scores in Budget/Timeline
+          readinessLevel = 'Tier 1: High-Priority Lead';
+          readinessColor = 'green';
+          readinessMessage = 'Excellent! Your project is well-defined and ready to start. We will prioritize your request and connect you with a director immediately.';
+        } else if (totalScore >= 20) {
+          readinessLevel = 'Tier 2: Strong Lead';
+          readinessColor = 'orange';
+          readinessMessage = 'Great progress! Your project has solid foundations. We can move to a quote quickly and clarify the remaining details.';
+        } else {
+          readinessLevel = 'Tier 3: Early-Stage Inquiry';
+          readinessColor = 'red';
+          readinessMessage = 'Thank you for your inquiry. We can help guide you on next steps for planning and budgeting. A project manager will be in touch.';
+        }
+
+        // 3. Prepare Summary HTML
+        let detailHtml = Object.values(quizData).map(item =>
+          `<li><strong>${item.question.split('. ')[1]}</strong>: ${item.value}</li>`
+        ).join('');
+
+        scoreSummary.innerHTML = `
+            <p style="font-weight: bold; color: ${readinessColor}; margin-bottom: 5px;">${readinessLevel}</p>
+            <p>${readinessMessage}</p>
+            <hr style="margin: 10px 0; border-color: #ddd;">
+            <p style="font-size: 0.9em; margin-bottom: 0;"><strong>Your Selections:</strong></p>
+            <ul style="list-style-type: none; padding-left: 0; font-size: 0.9em;">${detailHtml}</ul>
+        `;
+
+        // 4. Update Hidden Input for Form Submission
+        const submissionData = {
+          totalScore: totalScore,
+          readiness: readinessLevel,
+          details: quizData
+        };
+        document.getElementById('quiz-score-data').value = JSON.stringify(submissionData);
+
+        // 5. Run Confetti Animation
+        runConfetti();
+      }
+
+      // --- Form Submission (Placeholder for CRM/Email) ---
+      finalForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const name = formData.get('quiz-name'); // Access field values
+        const email = formData.get('quiz-email');
+        const phone = formData.get('quiz-phone');
+        const leadData = document.getElementById('quiz-score-data').value;
+
+        const dataToSend = {
+          name, email, phone, leadData: JSON.parse(leadData)
+        };
+
+        const formMessage = document.getElementById('form-message');
+        formMessage.style.display = 'block';
+        formMessage.textContent = 'Sending request...';
+
+        // --- IMPORTANT: REPLACE THIS WITH YOUR ACTUAL BACKEND/CRM INTEGRATION ---
+        console.log("--- LEAD SUBMISSION DATA ---");
+        console.log(dataToSend);
+
+        setTimeout(() => {
+          formMessage.textContent = 'Success! We have received your high-priority request and will contact you shortly.';
+          finalForm.reset();
+          // In a real application, you would use fetch() here to send data to your server/CRM endpoint.
+        }, 1500);
+        // ----------------------------------------------------------------------
+      });
+
+      // --- Confetti Animation Logic (Basic Implementation) ---
+      function runConfetti() {
+        const canvas = document.getElementById('confetti-canvas');
+        canvas.style.display = 'block';
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function Confetto() {
+          this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          this.x = Math.random() * canvas.width;
+          this.y = 0;
+          this.r = Math.random() * 5 + 5; // size
+          this.d = Math.random() * 100 + 50; // density
+          this.tilt = Math.random() * 10 - 5;
+          this.tiltAngle = 0;
+          this.velocity = Math.random() * 5 + 5;
+        }
+
+        Confetto.prototype.draw = function () {
+          ctx.beginPath();
+          ctx.lineWidth = this.r / 2;
+          ctx.strokeStyle = this.color;
+          ctx.moveTo(this.x + this.tilt + this.r, this.y);
+          ctx.lineTo(this.x + this.tilt, this.y + this.r / 2);
+          ctx.stroke();
+        };
+
+        let confetti = [];
+        for (let i = 0; i < 50; i++) {
+          confetti.push(new Confetto());
+        }
+
+        let animationLoop = setInterval(() => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          let remainingConfetti = [];
+
+          confetti.forEach(c => {
+            c.tiltAngle += 0.1;
+            c.y += c.velocity;
+            c.tilt = Math.sin(c.tiltAngle) * 10;
+            c.draw();
+
+            if (c.y < canvas.height) {
+              remainingConfetti.push(c);
+            }
+          });
+
+          confetti = remainingConfetti;
+
+          if (confetti.length === 0) {
+            clearInterval(animationLoop);
+            setTimeout(() => canvas.style.display = 'none', 500);
+          }
+        }, 16); // 60 FPS
+      }
+
+      // Initialize the first step
+      showStep(currentStep);
+    });
+
+  </script>
+
+</body>
+
+</html>
