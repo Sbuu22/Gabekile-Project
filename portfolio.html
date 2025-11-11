@@ -8,83 +8,108 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="logo/logo.png" sizes="32x32">
-<link rel="shortcut icon" href="logo/logo.png"> 
+<link rel="shortcut icon" href="logo/logo.png">
 
-    
+
 <style>
     /* ========================================================
-BASE & VARIABLES ()
+BASE & VARIABLES
 ======================================================== */
     :root {
-        --brand-primary: #0f1720;
+        /* Brand Colors */
+        --brand-dark: #0f1720;
+        --brand-primary: var(--brand-dark);
         --brand-accent: #ff7a00;
+        --brand-yellow: #ffb300;
+
+        /* Background & Text */
         --bg-light: #f4f4f9;
         --text-dark: #1e1e1e;
+        --text-color: var(--text-dark);
         --text-light: #cccccc;
-        --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        --radius: 4px;
-        --font-inter: 'Inter', sans-serif;
-        --transition-speed: 0.3s;
-        --brand-yellow: #ffb300;
-        --brand-dark: #0f1720;
-        --brand-accent: #ff7a00;
-        --text-color: #1e1e1e;
 
+        /* Spacing & Effects */
+        --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.2);
+        --radius: 0.25rem;
+        /* Standardizing to rem */
+        --transition-speed: 0.3s;
+
+        /* Typography */
+        --font-inter: 'Inter', sans-serif;
+    }
+
+    /* ========================================================
+RESET & BASE STYLES
+======================================================== */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        /* Modern box model */
     }
 
     body {
         font-family: var(--font-inter);
-        color: var(--text-dark);
+        color: var(--text-color);
         margin: 0;
         background-color: var(--bg-light);
         line-height: 1.6;
+        scroll-behavior: smooth;
+        /* For smooth scrolling to anchors/top */
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
     }
 
     /* Helper Classes */
     .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 1.25rem;
+        /* 20px */
     }
 
+    .no-scroll {
+        overflow: hidden !important;
+    }
+
+    /* Typography Helpers */
     .section-title {
         text-align: center;
-        font-size: 2.5em;
+        font-size: 2.5rem;
+        /* Use rem */
         color: var(--brand-primary);
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
+        /* 10px */
         font-weight: 800;
     }
 
     .section-intro {
         text-align: center;
-        font-size: 1.1em;
+        font-size: 1.125rem;
+        /* 18px */
         color: #666;
-        margin-bottom: 40px;
-    }
-
-    /* New class to disable background scroll when modal is open */
-    .no-scroll {
-        overflow: hidden !important;
+        margin-bottom: 2.5rem;
+        /* 40px */
     }
 
     /* ========================================================
-WATERMARK BACKGROUND (Flawless Fix: Logo Image Watermark)
+WATERMARK BACKGROUND
 ======================================================== */
     #watermark-bg {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
+        /* Shorthand for top, right, bottom, left: 0; */
         z-index: -1;
         background-color: var(--bg-light);
-        opacity: 1;
         background-image: url('logo/logo.png');
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 80vh;
         opacity: 0.05;
-        content: none;
     }
 
     /* ========================================================
@@ -93,85 +118,111 @@ HEADER & NAVIGATION
     header {
         background-color: var(--brand-dark);
         color: white;
-        padding-top: 20px;
-        transition: all 0.3s ease;
-        /* Smooth transition for shrinking */
+        padding-top: 1.25rem;
+        /* 20px */
+        transition: all var(--transition-speed) ease;
+        z-index: 100;
+        /* Ensure header is always above content */
+        position: sticky;
+        top: 0;
     }
 
     /* Class applied by JavaScript when scrolled */
     header.scrolled {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        background-color: var(--brand-dark);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    header.scrolled .brand-title {
-        font-size: 16px;
-    }
-
-    header.scrolled .brand-tagline {
-        display: none;
-    }
-
-    header.scrolled .logo {
-        width: 30px;
-        height: 30px;
-        font-size: 18px;
-    }
-
-    header.scrolled .topbar {
-        padding: 5px 0;
+        padding-block: 0.3125rem;
+        /* 5px (shorthand for padding-top and padding-bottom) */
+        box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.3);
+        /* 2px 10px */
     }
 
     .topbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 0;
+        padding-block: 0.625rem;
+        /* 10px */
     }
 
     .brand {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
+        /* 10px */
+        flex-shrink: 0;
     }
 
     .logo {
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        /* 40px */
+        height: 2.5rem;
         background-color: var(--brand-yellow);
         color: var(--brand-dark);
         font-weight: 800;
-        font-size: 24px;
+        font-size: 1.5rem;
+        /* 24px */
         border-radius: var(--radius);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        /* Use grid for perfect centering */
+        place-content: center;
         text-decoration: none;
+        transition: all var(--transition-speed) ease;
+    }
+
+    .brand-title-group {
+        line-height: 1.2;
     }
 
     .brand-title {
         font-weight: 800;
-        font-size: 18px;
+        font-size: 1.125rem;
+        /* 18px */
+        transition: font-size var(--transition-speed) ease;
     }
 
     .brand-tagline {
         color: rgba(255, 255, 255, 0.8);
-        font-size: 13px;
+        font-size: 0.8125rem;
+        /* 13px */
+        transition: opacity var(--transition-speed) ease;
     }
 
+    /* Scrolled Header Adjustments */
+    header.scrolled .brand-title {
+        font-size: 1rem;
+        /* 16px */
+    }
+
+    header.scrolled .brand-tagline {
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    header.scrolled .logo {
+        width: 1.875rem;
+        /* 30px */
+        height: 1.875rem;
+        font-size: 1.125rem;
+        /* 18px */
+    }
+
+    /* Navigation Menu */
     #navbar ul {
         list-style: none;
         display: flex;
-        gap: 20px;
+        gap: 1.25rem;
+        /* 20px */
+        padding: 0;
+        margin: 0;
     }
 
     #navbar a {
         color: white;
-        text-decoration: none;
-        padding: 5px 0;
-        transition: color 0.3s;
+        padding-block: 0.3125rem;
+        /* 5px */
+        transition: color var(--transition-speed);
+        display: inline-block;
     }
 
     #navbar a:hover {
@@ -183,79 +234,82 @@ HEADER & NAVIGATION
         background: none;
         border: none;
         color: white;
-        font-size: 24px;
+        font-size: 1.5rem;
         cursor: pointer;
+        line-height: 1;
     }
 
     /* ========================================================
-NEW FEATURE: FEATURED PROJECT BANNER STYLING
+FEATURED PROJECT BANNER
 ======================================================== */
     .featured-banner {
-        /* Use MGT project image as background */
         background-image: url('images/1.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: scroll;
-        /* Use 'fixed' for a more dramatic effect */
-        height: 350px;
-        /* Define a clear height for the banner */
+        height: 21.875rem;
+        /* 350px */
         border-radius: var(--radius);
-        margin-bottom: 50px;
+        margin-bottom: 3.125rem;
+        /* 50px */
         position: relative;
         overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: var(--shadow-lg);
     }
 
     .featured-content {
         position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        /* Gradient overlay for text readability */
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
-        padding: 40px;
-        padding-top: 100px;
-        /* Push content away from the top of the gradient */
+        inset: 0;
+        /* Cover the whole banner */
+        /* Gradient overlay for text readability (adjusted values for cleaner look) */
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2.5rem;
+        /* 40px */
         color: white;
     }
 
     .featured-content h2 {
-        font-size: 2.5em;
+        font-size: 2.5rem;
         margin: 0;
         color: white;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
         font-weight: 800;
     }
 
     .featured-content p {
-        font-size: 1.1em;
-        margin-top: 5px;
-        margin-bottom: 20px;
+        font-size: 1.1rem;
+        margin-top: 0.3125rem;
+        margin-bottom: 1.25rem;
         max-width: 600px;
     }
 
     .featured-tag {
-        display: inline-block;
+        align-self: flex-start;
+        /* Keeps the tag from stretching */
         background-color: var(--brand-accent);
         color: var(--brand-primary);
-        padding: 5px 10px;
+        padding: 0.3125rem 0.625rem;
         border-radius: 3px;
         font-weight: 700;
-        font-size: 0.8em;
+        font-size: 0.8rem;
         letter-spacing: 1px;
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
     }
 
     .view-details-btn {
+        align-self: flex-start;
         background-color: var(--brand-accent);
         color: var(--brand-primary);
         border: none;
-        padding: 10px 20px;
+        padding: 0.625rem 1.25rem;
         border-radius: 50px;
         cursor: pointer;
         font-weight: 700;
-        font-size: 1em;
-        transition: background-color 0.3s, transform 0.3s;
+        font-size: 1rem;
+        transition: background-color var(--transition-speed), transform var(--transition-speed);
     }
 
     .view-details-btn:hover {
@@ -263,48 +317,36 @@ NEW FEATURE: FEATURED PROJECT BANNER STYLING
         transform: translateY(-2px);
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .featured-banner {
-            height: 250px;
-            margin-bottom: 30px;
-        }
-
-        .featured-content {
-            padding: 20px;
-            padding-top: 80px;
-        }
-
-        .featured-content h2 {
-            font-size: 1.8em;
-        }
-    }
 
     /* ========================================================
 PORTFOLIO MAIN SECTION
 ======================================================== */
     #portfolio-section {
-        padding: 80px 0;
+        padding-block: 5rem;
+        /* 80px */
     }
 
-    /* NEW: Filter and Search container */
+    /* Filter and Search container */
     .portfolio-controls {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        margin-bottom: 50px;
+        gap: 1.25rem;
+        /* 20px */
+        margin-bottom: 3.125rem;
+        /* 50px */
         align-items: center;
     }
 
     #projectSearch {
         width: 100%;
         max-width: 400px;
-        padding: 12px 20px;
+        padding: 0.75rem 1.25rem;
+        /* 12px 20px */
         border: 2px solid var(--text-light);
         border-radius: var(--radius);
-        font-size: 1em;
-        transition: border-color 0.3s, box-shadow 0.3s;
-        box-shadow: var(--shadow);
+        font-size: 1rem;
+        transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        box-shadow: var(--shadow-sm);
     }
 
     #projectSearch:focus {
@@ -313,9 +355,8 @@ PORTFOLIO MAIN SECTION
         box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2);
     }
 
-    /* Filter Buttons - Clean, Professional Style */
+    /* Filter Buttons */
     .portfolio-filters {
-        text-align: center;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -324,13 +365,15 @@ PORTFOLIO MAIN SECTION
     .filter-btn {
         background-color: var(--bg-light);
         border: 2px solid var(--text-light);
-        color: var(--text-dark);
-        padding: 10px 20px;
-        margin: 5px;
+        color: var(--text-color);
+        padding: 0.625rem 1.25rem;
+        /* 10px 20px */
+        margin: 0.3125rem;
+        /* 5px */
         border-radius: var(--radius);
         cursor: pointer;
         font-weight: 600;
-        transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
+        transition: all var(--transition-speed);
         white-space: nowrap;
     }
 
@@ -343,14 +386,15 @@ PORTFOLIO MAIN SECTION
         background-color: var(--brand-primary);
         border-color: var(--brand-primary);
         color: white;
-        box-shadow: var(--shadow);
+        box-shadow: var(--shadow-sm);
     }
 
     /* Project Grid */
     .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
+        gap: 1.25rem;
+        /* 20px */
     }
 
     .project-item {
@@ -360,11 +404,14 @@ PORTFOLIO MAIN SECTION
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         cursor: pointer;
         border: 1px solid #eee;
+        background-color: white;
+        /* Ensures consistent background */
     }
 
     .project-item img {
         width: 100%;
-        height: 280px;
+        height: 17.5rem;
+        /* 280px */
         object-fit: cover;
         display: block;
         transition: transform 0.4s ease, opacity 0.4s ease;
@@ -376,46 +423,48 @@ PORTFOLIO MAIN SECTION
         bottom: 0;
         left: 0;
         right: 0;
-        background: transparent;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
         color: white;
-        padding: 20px;
+        padding: 1.25rem;
+        /* 20px */
         transition: padding 0.4s ease, background 0.4s ease;
-        min-height: 80px;
+        min-height: 5rem;
+        /* 80px */
         display: flex;
         align-items: flex-end;
     }
 
     .project-details h3 {
         margin: 0;
-        font-size: 1.4em;
+        font-size: 1.4rem;
         color: white;
         font-weight: 600;
         text-shadow: 0 0 5px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
         border-bottom: 2px solid var(--brand-accent);
-        padding-bottom: 5px;
+        padding-bottom: 0.3125rem;
+        /* 5px */
         transition: border-color 0.4s ease;
     }
 
-    /* Hide all secondary text/description elements */
     .project-details p {
+        /* Hide all secondary text/description elements */
         display: none !important;
     }
 
-    /* Hover effect: Zoom image and increase overlay visibility/padding */
+    /* Hover effects */
     .project-item:hover img {
         transform: scale(1.03);
         opacity: 0.95;
     }
 
     .project-item:hover .project-details {
-        background: transparent;
-        padding-bottom: 25px;
+        padding-bottom: 1.5625rem;
+        /* 25px */
     }
 
     .project-item:hover .project-details h3 {
         border-bottom-color: white;
     }
-
 
 
     /* ========================================================
@@ -424,36 +473,41 @@ MODAL STYLING (Project Detail View)
     .modal {
         display: none;
         position: fixed;
+        inset: 0;
         z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
+        overflow-y: auto;
+        /* Allow scrolling on the modal container itself */
         background-color: rgba(0, 0, 0, 0.85);
         opacity: 0;
         transition: opacity var(--transition-speed) ease;
     }
 
     .modal.is-open {
-        display: block;
+        display: flex;
+        /* Use flex to easily center content */
+        align-items: center;
+        justify-content: center;
         opacity: 1;
     }
 
     .modal-content {
         background-color: var(--bg-light);
-        margin: 3% auto;
-        padding: 30px 40px;
+        margin: 3vh auto;
+        /* 3% margin top/bottom, auto side */
+        padding: 1.875rem 2.5rem;
+        /* 30px 40px */
         border-radius: var(--radius);
         width: 95%;
         max-width: 1000px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         position: relative;
-        transform: scale(0.9);
+        transform: scale(0.95);
+        /* Slightly less dramatic scale */
         transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
         opacity: 0;
         max-height: 94vh;
         overflow-y: auto;
+        /* Important: content scrolls inside the modal */
     }
 
     .modal.is-open .modal-content {
@@ -463,27 +517,31 @@ MODAL STYLING (Project Detail View)
 
     .modal-content h2 {
         color: var(--brand-primary);
-        font-size: 2.2em;
+        font-size: 2.2rem;
         margin-top: 0;
         border-bottom: 3px solid var(--brand-accent);
-        padding-bottom: 10px;
-        margin-bottom: 25px;
+        padding-bottom: 0.625rem;
+        /* 10px */
+        margin-bottom: 1.5625rem;
+        /* 25px */
         font-weight: 700;
     }
 
-    /* FIXED: Close button styling */
     .modal-content .close-btn {
         color: var(--brand-primary);
         position: absolute;
-        top: 15px;
-        right: 25px;
-        font-size: 30px;
-        /* Made it large and clickable */
+        top: 0.9375rem;
+        /* 15px */
+        right: 1.5625rem;
+        /* 25px */
+        font-size: 1.875rem;
+        /* 30px */
         font-weight: 300;
         cursor: pointer;
         transition: color 0.2s, transform 0.2s;
-        padding: 0;
         line-height: 1;
+        background: transparent;
+        border: none;
     }
 
     .modal-content .close-btn:hover,
@@ -493,68 +551,77 @@ MODAL STYLING (Project Detail View)
         outline: none;
     }
 
-    /* NEW GALLERY STYLES */
-    
+    /* Gallery & Media Styles */
+    .modal-media-wrapper {
+        margin-bottom: 1.25rem;
+        /* 20px */
+    }
+
     .modal-main-image,
     .modal-main-video {
         width: 100%;
         height: auto;
-        object-fit:contain;
+        max-height: 70vh;
+        /* Controlled max height */
+        object-fit: contain;
         border-radius: var(--radius);
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
+        margin-bottom: 1.25rem;
+        border: none;
         transition: opacity 0.15s ease;
+        display: block;
     }
 
-    /* Ensure video element uses the correct constraints */
     .modal-main-video {
-        max-height: 80vh;
-        /* Set a max height relative to viewport for large screens */
-        min-height: 300px;
         background-color: black;
     }
 
     .thumbnail-container {
         display: flex;
-        gap: 10px;
+        gap: 0.625rem;
+        /* 10px */
         overflow-x: auto;
-        padding-bottom: 10px;
-        margin-bottom: 30px;
+        padding-bottom: 0.625rem;
+        margin-bottom: 1.875rem;
+        /* 30px */
         justify-content: center;
         -ms-overflow-style: none;
+        /* IE and Edge */
         scrollbar-width: none;
+        /* Firefox */
     }
 
     .thumbnail-container::-webkit-scrollbar {
         display: none;
+        /* Chrome, Safari, Opera */
     }
 
     .thumbnail-container img {
-        width: 80px;
-        height: 60px;
+        width: 5rem;
+        /* 80px */
+        height: 3.75rem;
+        /* 60px */
         object-fit: cover;
         border-radius: var(--radius);
         cursor: pointer;
         opacity: 0.6;
-        transition: opacity 0.3s, transform 0.2s, border 0.3s;
+        transition: all var(--transition-speed);
         border: 2px solid transparent;
         flex-shrink: 0;
     }
 
     .thumbnail-container img:hover {
-        opacity: 1;
-        transform: scale(1.05);
+        opacity: 0.8;
     }
 
     .thumbnail-container img.active {
         opacity: 1;
         border-color: var(--brand-accent);
-        transform: scale(1);
+        transform: scale(1.05);
     }
 
     .modal-info p {
-        margin-bottom: 20px;
-        font-size: 1.05em;
+        margin-bottom: 1.25rem;
+        font-size: 1.05rem;
         line-height: 1.7;
         text-align: justify;
     }
@@ -565,8 +632,8 @@ MODAL STYLING (Project Detail View)
         text-transform: uppercase;
         letter-spacing: 1px;
         display: block;
-        margin-bottom: 10px;
-        font-size: 0.9em;
+        margin-bottom: 0.625rem;
+        font-size: 0.9rem;
     }
 
     .modal-info strong {
@@ -574,34 +641,39 @@ MODAL STYLING (Project Detail View)
     }
 
     /* ========================================================
-BACK TO TOP BUTTON STYLING (New Feature)
+FLOATING ACTION BUTTONS
 ======================================================== */
+
+    /* Back To Top Button */
     #backToTopBtn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: none;
+        /* Hidden by default, JS controls display */
+        place-content: center;
         position: fixed;
-        bottom: 25px;
-        right: 25px;
+        bottom: 1.5625rem;
+        /* 25px */
+        right: 1.5625rem;
         z-index: 99;
-        width: 50px;
-        height: 50px;
+        width: 3.125rem;
+        /* 50px */
+        height: 3.125rem;
         background-color: var(--brand-primary);
         color: white;
         border: none;
         border-radius: 50%;
         cursor: pointer;
         outline: none;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        font-size: 20px;
-        transition: opacity 0.3s, background-color 0.3s, transform 0.3s, visibility 0.3s;
+        box-shadow: var(--shadow-sm);
+        font-size: 1.25rem;
+        /* 20px */
+        transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
         opacity: 0;
-        visibility: hidden;
     }
 
     #backToTopBtn.show {
+        display: grid;
+        /* Use grid when shown */
         opacity: 1;
-        visibility: visible;
     }
 
     #backToTopBtn:hover {
@@ -609,26 +681,27 @@ BACK TO TOP BUTTON STYLING (New Feature)
         transform: translateY(-2px);
     }
 
-    /* ========================================================
-NEW: FLOATING CONTACT BUTTON STYLING (Blended & Actionable)
-======================================================== */
+    /* Contact Us Button */
     #contactUsBtn {
         position: fixed;
-        bottom: 90px;
-        right: 25px;
+        bottom: 5.625rem;
+        /* 90px */
+        right: 1.5625rem;
         z-index: 99;
         background-color: var(--brand-primary);
         color: white;
         text-decoration: none;
-        padding: 12px 18px;
+        padding: 0.75rem 1.125rem;
+        /* 12px 18px */
         border-radius: 50px;
         font-weight: 600;
-        font-size: 1em;
+        font-size: 1rem;
         display: flex;
         align-items: center;
-        gap: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+        gap: 0.5rem;
+        /* 8px */
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-speed);
         opacity: 0.85;
     }
 
@@ -639,77 +712,109 @@ NEW: FLOATING CONTACT BUTTON STYLING (Blended & Actionable)
         box-shadow: 0 6px 15px rgba(255, 122, 0, 0.4);
     }
 
-    @media (max-width: 768px) {
-        #contactUsBtn {
-            bottom: 75px;
-            right: 20px;
-            padding: 10px 15px;
-            font-size: 0.9em;
-        }
-    }
-
     /* ========================================================
-Responsive Design
+RESPONSIVE DESIGN
 ======================================================== */
     @media (max-width: 768px) {
+
+        /* Base */
         .section-title {
-            font-size: 2em;
+            font-size: 2rem;
         }
 
+        /* Featured Banner */
+        .featured-banner {
+            height: 15.625rem;
+            /* 250px */
+            margin-bottom: 1.875rem;
+            /* 30px */
+        }
+
+        .featured-content {
+            padding: 1.25rem;
+            /* 20px */
+        }
+
+        .featured-content h2 {
+            font-size: 1.8rem;
+        }
+
+        /* Portfolio */
         .project-grid {
             grid-template-columns: 1fr;
         }
 
+        .project-item img {
+            height: 15rem;
+            /* Adjust height for smaller screens */
+        }
+
         .project-details {
-            min-height: 60px;
-            padding: 15px;
+            min-height: 3.75rem;
+            /* 60px */
+            padding: 0.9375rem;
+            /* 15px */
         }
 
         .project-details h3 {
-            font-size: 1.2em
-        }
-
-        .modal-content {
-            margin: 0;
-            padding: 20px;
-            width: 100%;
-            max-height: 100vh;
-            border-radius: 0;
-        }
-
-        .modal-content h2 {
-            font-size: 1.8em;
-        }
-
-        nav ul {
-            display: none;
-        }
-
-        nav {
-            justify-content: center;
+            font-size: 1.2rem;
         }
 
         .portfolio-filters {
-            margin-bottom: 30px;
+            margin-bottom: 1.875rem;
+            /* 30px */
         }
 
         .filter-btn {
-            padding: 8px 15px;
-            font-size: 0.9em;
+            padding: 0.5rem 0.9375rem;
+            /* 8px 15px */
+            font-size: 0.9rem;
         }
 
         #projectSearch {
             max-width: 100%;
         }
 
-        #backToTopBtn {
-            width: 45px;
-            height: 45px;
-            bottom: 20px;
-            right: 20px;
-            font-size: 18px;
+        /* Navigation (Mobile menu toggle logic needed in JS/HTML) */
+        #navbar ul {
+            /* This hides the desktop menu on mobile */
+            display: none;
         }
 
+        /* Modal */
+        .modal-content {
+            margin: 0;
+            padding: 1.25rem;
+            /* 20px */
+            width: 100%;
+            max-height: 100vh;
+            border-radius: 0;
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+        }
+
+        /* Floating Buttons */
+        #backToTopBtn {
+            width: 2.8125rem;
+            /* 45px */
+            height: 2.8125rem;
+            bottom: 1.25rem;
+            /* 20px */
+            right: 1.25rem;
+            font-size: 1.125rem;
+            /* 18px */
+        }
+
+        #contactUsBtn {
+            bottom: 4.6875rem;
+            /* 75px */
+            right: 1.25rem;
+            /* 20px */
+            padding: 0.625rem 0.9375rem;
+            font-size: 0.9rem;
+        }
     }
 
     ;
@@ -719,14 +824,14 @@ Responsive Design
 
 <body>
 
-    <div id="watermark-bg"></div>
+    <div id="watermark-bg" aria-hidden="true"></div>
 
     <header>
         <div class="container">
             <div class="topbar">
                 <div class="brand">
-                    <a href="index.html" class="logo">G</a>
-                    <div>
+                    <a href="index.html" class="logo" aria-label="Gabekile Projects Home">G</a>
+                    <div class="brand-info">
                         <div class="brand-title">Gabekile Projects</div>
                         <small class="brand-tagline">
                             General Building • Civil • Mechanical • Electrical • Project Management
@@ -735,15 +840,15 @@ Responsive Design
                 </div>
 
                 <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="navbar-menu">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">Toggle navigation menu</span>
                     <i class="fas fa-bars"></i>
                 </button>
 
-                <nav id="navbar">
+                <nav id="navbar" role="navigation">
                     <ul id="navbar-menu">
                         <li><a href="index.html#about">About</a></li>
                         <li><a href="index.html#services">Services</a></li>
-                        <li><a href="#portfolio-section">Projects</a></li>
+                        <!-- <li><a href="#portfolio-section" aria-current="page">Projects</a></li> -->
                         <li><a href="index.html#team">Team</a></li>
                         <li><a href="index.html#affiliation">Affiliations</a></li>
                         <li><a href="index.html#contact">Contact</a></li>
@@ -766,14 +871,16 @@ Responsive Design
                         <h2>MGT Headquarter Renovation</h2>
                         <p>A comprehensive structural refurbishment and extension showcasing our full-scope building
                             expertise.</p>
-                        <button class="view-details-btn" data-project-id="mgt-reno">View Full Details <i
-                                class="fas fa-arrow-right"></i></button>
+                        <button class="view-details-btn" data-project-id="mgt-reno"
+                            aria-label="View details for MGT Headquarter Renovation">
+                            View Full Details <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
 
-
                 <div class="portfolio-controls">
-                    <input type="text" id="projectSearch" placeholder="🔍 Search projects (title, sector, timeline...)">
+                    <input type="text" id="projectSearch" placeholder="🔍 Search projects (title, sector, timeline...)"
+                        aria-label="Search projects">
 
                     <div class="portfolio-filters" role="group" aria-label="Project Filters">
                         <button class="filter-btn active" data-filter="all" aria-pressed="true">All Sectors</button>
@@ -787,9 +894,10 @@ Responsive Design
                     </div>
                 </div>
 
-                <div class="project-grid" id="project-grid" role="region" aria-live="polite">
+                <div class="project-grid" id="project-grid" role="region" aria-live="polite"
+                    aria-label="Project results grid">
 
-                    <div class="project-item" data-category="general" data-id="mgt-reno">
+                    <div class="project-item" data-category="general" data-id="mgt-reno" tabindex="0" role="link">
                         <img src="images/1.jpg" alt="MGT headquarters renovations">
                         <div class="project-details">
                             <h3>MGT Headquarter Renovation</h3>
@@ -797,7 +905,8 @@ Responsive Design
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="civil" data-id="mpumalanga-pv">
+                    <div class="project-item" data-category="civil infrastructure" data-id="mpumalanga-pv" tabindex="0"
+                        role="link">
                         <img src="images/Parliamentary/Parliamentary2.JPG" alt="Parliamentary village civil works">
                         <div class="project-details">
                             <h3>Mpumalanga Parliamentary Village</h3>
@@ -806,7 +915,8 @@ Responsive Design
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="general" data-id="mapulaneng-hospital">
+                    <div class="project-item" data-category="general" data-id="mapulaneng-hospital" tabindex="0"
+                        role="link">
                         <img src="images/Mapulaneng/Mapulaneng1.jpg" alt="Hospital construction site">
                         <div class="project-details">
                             <h3>New Mapulaneng Hospital Supervision</h3>
@@ -814,7 +924,8 @@ Responsive Design
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="general residential" data-id="tanzania-res">
+                    <div class="project-item" data-category="general residential" data-id="tanzania-res" tabindex="0"
+                        role="link">
                         <img src="images/Tanzania/Tanzania1.jpg" alt="Residential construction in Tanzania">
                         <div class="project-details">
                             <h3>Tanzania Residential Projects</h3>
@@ -822,7 +933,7 @@ Responsive Design
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="mechanical" data-id="jma-steel">
+                    <div class="project-item" data-category="mechanical" data-id="jma-steel" tabindex="0" role="link">
                         <img src="images/JMA/JMA1.jpg" alt="Structural steel in factory">
                         <div class="project-details">
                             <h3>JMA Structural Steel Works</h3>
@@ -830,7 +941,8 @@ Responsive Design
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="electrical" data-id="mccain-foods">
+                    <div class="project-item" data-category="electrical infrastructure" data-id="mccain-foods"
+                        tabindex="0" role="link">
                         <img src="images/Mcain/Mcain1.jpg" alt="Factory electrical works">
                         <div class="project-details">
                             <h3>McCain Foods Works Supervision</h3>
@@ -838,25 +950,27 @@ Responsive Design
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="residential general" data-id="nyambi-residence">
-                        <img src="images/Nyambi/Nyambi1.jpg" alt="Nyambi Residence placeholder">
+                    <div class="project-item" data-category="residential general" data-id="nyambi-residence"
+                        tabindex="0" role="link">
+                        <img src="images/Nyambi/Nyambi1.jpg" alt="Nyambi Residence completed exterior">
                         <div class="project-details">
                             <h3>Nyambi Residence</h3>
                             <p class="project-description">Complete construction of a private luxury residence...</p>
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="residential general" data-id="mbatsane-residence">
-                        <img src="images/Mbatsane/Mbatsane1.jpg" alt="Mbatsane Residence placeholder">
+                    <div class="project-item" data-category="residential general" data-id="mbatsane-residence"
+                        tabindex="0" role="link">
+                        <img src="images/Mbatsane/Mbatsane1.jpg" alt="Mbatsane Residence exterior">
                         <div class="project-details">
                             <h3>Mbatsane Residence</h3>
                             <p class="project-description">Residential renovation and extension project...</p>
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="civil infrastructure" data-id="brt-wonderboom">
-                        <img src="images/electrical.jpg"
-                            alt="BRT Wonderboom Supervision placeholder">
+                    <div class="project-item" data-category="civil infrastructure" data-id="brt-wonderboom" tabindex="0"
+                        role="link">
+                        <img src="images/electrical.jpg" alt="BRT Wonderboom infrastructure works">
                         <div class="project-details">
                             <h3>BRT Wonderboom Supervision</h3>
                             <p class="project-description">Supervision of the Bus Rapid Transit infrastructure works...
@@ -864,24 +978,27 @@ Responsive Design
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="infrastructure" data-id="guest house">
-                        <img src="images/Zenzele/Zenzele1.jpg" alt="Future infrastructure project">
+                    <div class="project-item" data-category="general infrastructure" data-id="zenzele-guest-house"
+                        tabindex="0" role="link">
+                        <img src="images/Zenzele/Zenzele1.jpg" alt="Zenzele Guest House exterior">
                         <div class="project-details">
                             <h3>Zenzele Guest house</h3>
                             <p class="project-description">Large-scale water treatment facility upgrade...</p>
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="civil residential" data-id="Kamau residence">
-                        <img src="images/Kamau/Kamau1.jpg" alt="Kamau residence">
+                    <div class="project-item" data-category="residential" data-id="kamau-residence" tabindex="0"
+                        role="link">
+                        <img src="images/Kamau/Kamau1.jpg" alt="Kamau residence exterior">
                         <div class="project-details">
                             <h3>Kamau Residence</h3>
                             <p class="project-description">Residential project management and construction works...</p>
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="civil residential" data-id="Masher Residence">
-                        <img src="images/Masher/Masher1.jpg" alt="Future infrastructure project">
+                    <div class="project-item" data-category="residential" data-id="masher-residence" tabindex="0"
+                        role="link">
+                        <img src="images/Masher/Masher1.jpg" alt="Masher Residence rendering">
                         <div class="project-details">
                             <h3>Masher Residence</h3>
                             <p class="project-description">A luxury residential development entering the planning
@@ -893,48 +1010,52 @@ Responsive Design
         </section>
     </main>
 
-    <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="modalTitle">
         <div class="modal-content">
-            <span class="close-btn" tabindex="0" role="button" aria-label="Close Project Details">&times;</span>
+            <button class="close-btn" tabindex="0" type="button" aria-label="Close Project Details">
+                <i class="fas fa-times"></i>
+            </button>
 
-            <div id="modalGallery">
-                <img id="modalMainImage" class="modal-main-image" src="" alt="Project main image">
+            <div id="modalGallery" class="modal-gallery-container">
+                <img id="modalMainImage" class="modal-main-image" src="" alt="Project main image"
+                    style="display: none;">
+                <video id="modalMainVideo" class="modal-main-video" controls autoplay muted loop playsinline
+                    style="display: none;"></video>
+
                 <div id="thumbnailContainer" class="thumbnail-container">
                 </div>
             </div>
+
             <div class="modal-info">
                 <span id="modalSector" class="modal-sector"></span>
                 <h2 id="modalTitle"></h2>
-
                 <p id="modalDescription"></p>
-
                 <p><strong>Timeline:</strong> <span id="modalTimeline"></span></p>
             </div>
         </div>
     </div>
 
-    <button id="backToTopBtn" title="Go to top">
+    <button id="backToTopBtn" title="Go to top" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
-
-    <footer
-        style="background: var(--brand-primary); color: white; text-align: center; padding: 20px 0; font-size: 0.9em;">
-        <div class="container">
-            &copy; 2025 Gabekile Projects. All Rights Reserved.
-        </div>
-    </footer>
 
     <a id="contactUsBtn" href="index.html#contact" title="Contact Us for a Quote">
         <i class="fas fa-headset"></i> Contact Us
     </a>
 
+    <footer role="contentinfo"
+        style="background: var(--brand-primary); color: white; text-align: center; padding: 1.25rem 0; font-size: 0.9em;">
+        <div class="container">
+            &copy; <span id="currentYear">2025</span> Gabekile Projects. All Rights Reserved.
+        </div>
+    </footer>
 
 </body>
 
-
 <script>
     // ========================================================
-    // PROJECT DATA STORAGE (for Modal)
+    // 1. PROJECT DATA STORAGE (for Modal)
     // ========================================================
     const projectData = {
         'mgt-reno': {
@@ -977,7 +1098,7 @@ Responsive Design
             timeline: "Jan 2021 - Dec 2023",
             images: [
                 { src: "images/Tanzania/Tanzania1.jpg", alt: "Residential Construction - Completed" },
-                { src: "images/Tanzania/Tanzania2.jpg", alt: "Residential Construction - Completed" },
+                { src: "images/Tanzania/Tanzania2.jpg", alt: "Residential Construction" },
                 { src: "images/Tanzania/Tanzania3.jpg", alt: "Residential Construction" },
                 { src: "images/Tanzania/Tanzania4.jpg", alt: "Residential Construction" },
                 { src: "images/Tanzania/Tanzania5.jpg", alt: "Residential Construction" },
@@ -1054,8 +1175,7 @@ Responsive Design
             ],
             description: "Supervision and quality assurance for the Bus Rapid Transit (BRT) infrastructure works at the Wonderboom station. This involved monitoring civil works, ensuring adherence to public transport quality standards, and overall site compliance."
         },
-        // Merged 'Zenzele Guest House' and 'guest house' into one consistent ID
-        'guest house': {
+        'zenzele-guest-house': { // Standardized ID to be hyphenated for consistency
             title: "Zenzele Guest house",
             sector: "Infrastructure",
             timeline: "Planning Stage",
@@ -1065,7 +1185,7 @@ Responsive Design
             ],
             description: "Currently in the planning and tender stage, this project is a large-scale water treatment facility upgrade designed to significantly boost capacity and support the regional population's growth and environmental needs. It represents a critical infrastructure investment."
         },
-        'Kamau residence': {
+        'kamau-residence': { // Standardized ID
             title: "Kamau Residence",
             sector: "Residential / General Building",
             timeline: "Planning Stage",
@@ -1076,11 +1196,14 @@ Responsive Design
                 { src: "images/Kamau/Kamau4.jpg", alt: "Kamau residence" },
                 { src: "images/Kamau/Kamau5.jpg", alt: "Kamau residence" },
                 { src: "images/Kamau/Kamau6.jpg", alt: "Kamau residence" },
-                { src: "images/Kamau/Kamau7.jpg", alt: "Kamau residence" }
+                { src: "images/Kamau/Kamau7.jpg", alt: "Kamau residence" },
+
+
+
             ],
             description: "This is a proposed high-end residential project currently in the planning phase, involving comprehensive design and preliminary civil works. The focus is on a sustainable and modern family dwelling."
         },
-        'Masher Residence': {
+        'masher-residence': { // Standardized ID
             title: "Masher Residence",
             sector: "Residential / General Building",
             timeline: "Planning Stage",
@@ -1090,22 +1213,30 @@ Responsive Design
                 { src: "images/Masher/Masher3.jpg", alt: "Masher residence" },
                 { src: "images/Masher/Masher4.jpg", alt: "Masher residence" },
                 { src: "images/Masher/Masher5.jpg", alt: "Masher residence" },
-                { src: "images/Masher/Masher6.jpg", alt: "Masher residence" }
+                { src: "images/Masher/Masher6.jpg", alt: "Masher residence" },
+
+
             ],
             description: "A luxury residential development entering the planning stage. The scope includes full construction management, integrating civil and general building expertise for a bespoke, client-driven design."
         }
     };
 
+    // Update HTML Project IDs to match the standardized JS keys for Masher, Kamau, and Zenzele (Guest House)
+    // 'guest house' -> 'zenzele-guest-house'
+    // 'Kamau residence' -> 'kamau-residence'
+    // 'Masher Residence' -> 'masher-residence'
+
 
     // ========================================================
-    // PORTFOLIO FILTER & MODAL LOGIC
+    // 2. CORE LOGIC
     // ========================================================
     document.addEventListener('DOMContentLoaded', () => {
+        // --- Element Queries ---
         const filterButtons = document.querySelectorAll('.filter-btn');
         const projectItems = document.querySelectorAll('.project-item');
         const projectSearch = document.getElementById('projectSearch');
-
-        
+        const featuredDetailsBtn = document.querySelector('.featured-banner .view-details-btn');
+        const featuredProjectId = featuredDetailsBtn?.getAttribute('data-project-id');
 
         // Modal elements
         const modal = document.getElementById('projectModal');
@@ -1113,82 +1244,100 @@ Responsive Design
         const modalTitle = document.getElementById('modalTitle');
         const modalSector = document.getElementById('modalSector');
         const modalTimeline = document.getElementById('modalTimeline');
-        const modalMainImage = document.getElementById('modalMainImage');
-        const thumbnailContainer = document.getElementById('thumbnailContainer');
         const modalDescription = document.getElementById('modalDescription');
+        const thumbnailContainer = document.getElementById('thumbnailContainer');
+        const modalMainImage = document.getElementById('modalMainImage');
+        const modalMainVideo = document.getElementById('modalMainVideo'); // New video element
 
-        // Navigation elements
-        const menuToggle = document.getElementById('menu-toggle');
-        const navbar = document.getElementById('navbar');
-
-
-        // General elements
+        // Navigation & Global elements
         const body = document.body;
         const header = document.querySelector('header');
+        const menuToggle = document.getElementById('menu-toggle');
+        const navbar = document.getElementById('navbar');
         const backToTopBtn = document.getElementById('backToTopBtn');
         const SCROLL_THRESHOLD = 300;
 
 
-        // Add simple transition CSS via JS for filtering animation
+        // Apply base transition style for filtering
         projectItems.forEach(item => {
             item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         });
 
-        // --- Helper Functions ---
+        // --- Utility Functions ---
 
-        const renderGallery = (images) => {
-            const mediaContainer = document.getElementById('modalGallery');
+        /**
+         * Standard throttle implementation to limit function calls.
+         * @param {function} func The function to throttle.
+         * @param {number} limit The time limit in milliseconds.
+         */
+        const throttle = (func, limit) => {
+            let lastRan;
+            let lastTimer;
+            return function () {
+                const context = this;
+                const args = arguments;
+                if (!lastRan) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                } else {
+                    clearTimeout(lastTimer);
+                    lastTimer = setTimeout(() => {
+                        if ((Date.now() - lastRan) >= limit) {
+                            func.apply(context, args);
+                            lastRan = Date.now();
+                        }
+                    }, limit - (Date.now() - lastRan));
+                }
+            };
+        };
+
+        // --- Modal Functions ---
+
+        /**
+         * Displays the currently selected main media (Image or Video)
+         * by toggling the display property of the main elements.
+         * @param {object} media - The media object { src, alt }.
+         */
+        const displayMainMedia = (media) => {
+            const isVideo = media.src.endsWith('.mp4');
+
+            modalMainImage.style.display = isVideo ? 'none' : 'block';
+            modalMainVideo.style.display = isVideo ? 'block' : 'none';
+
+            if (isVideo) {
+                modalMainVideo.src = media.src;
+                modalMainVideo.load(); // Ensure video loads immediately
+                modalMainVideo.play().catch(e => console.log('Video autoplay blocked:', e)); // Handle autoplay policies
+            } else {
+                modalMainImage.src = media.src;
+                if (modalMainVideo.pause) modalMainVideo.pause(); // Pause video if switching to image
+            }
+        };
+
+        /**
+         * Renders the project media gallery and thumbnails.
+         * @param {Array<object>} images - Array of media objects.
+         */
+        const renderGallery = (images = []) => {
             thumbnailContainer.innerHTML = '';
 
-            // 1. Remove old main media elements to ensure only one is present
-            const existingMainMedia = mediaContainer.querySelector('.modal-main-image, .modal-main-video');
-            if (existingMainMedia) {
-                existingMainMedia.remove();
-            }
-
-            // Function to create and insert the main media element (Image or Muted Video)
-            const displayMainMedia = (media) => {
-                let mainMedia;
-
-                if (media.src.endsWith('.mp4')) {
-                    // Create a video element for MP4 files
-                    mainMedia = document.createElement('video');
-                    mainMedia.classList.add('modal-main-video');
-                    mainMedia.setAttribute('controls', '');
-                    mainMedia.setAttribute('autoplay', '');
-                    mainMedia.setAttribute('loop', ''); // Loop for continuous play
-                    mainMedia.setAttribute('muted', ''); // MUTE IS ADDED HERE
-                    mainMedia.src = media.src;
-                    mainMedia.alt = media.alt;
-                } else {
-                    // Create an image element for images
-                    mainMedia = document.createElement('img');
-                    mainMedia.classList.add('modal-main-image');
-                    mainMedia.src = media.src;
-                    mainMedia.alt = media.alt;
-                }
-
-                // Insert the new main media element before the thumbnail container
-                mediaContainer.prepend(mainMedia);
-            };
-
-            // Display the first item if it exists
-            if (images && images.length > 0) {
+            // 1. Display the first item immediately
+            if (images.length > 0) {
                 displayMainMedia(images[0]);
             }
-
 
             // 2. Thumbnail Generation Logic
             images.forEach((media, index) => {
                 const isVideo = media.src.endsWith('.mp4');
-                const thumbnail = document.createElement(isVideo ? 'div' : 'img');
+                const thumbnail = document.createElement(isVideo ? 'button' : 'img');
+
                 thumbnail.classList.add('thumbnail');
+                thumbnail.setAttribute('aria-label', `View ${media.alt}`);
 
                 if (isVideo) {
-                    // Placeholder for video thumbnail
-                    // Assuming Font Awesome is linked, this shows a video icon
+                    // Video thumbnail placeholder (using the button element)
                     thumbnail.innerHTML = `<i class="fas fa-video"></i> Video`;
-                    thumbnail.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #333; color: white; font-size: 10px; height: 60px; width: 80px;';
+                    thumbnail.style.cssText = 'display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #333; color: white; font-size: 10px; height: 60px; width: 80px; border: none;';
                 } else {
                     // Image thumbnail
                     thumbnail.src = media.src;
@@ -1200,10 +1349,6 @@ Responsive Design
                 }
 
                 thumbnail.addEventListener('click', () => {
-                    // Remove existing active media element (to switch between image/video)
-                    const currentMainMedia = mediaContainer.querySelector('.modal-main-image, .modal-main-video');
-                    if (currentMainMedia) currentMainMedia.remove();
-
                     // Display the newly selected media
                     displayMainMedia(media);
 
@@ -1218,57 +1363,61 @@ Responsive Design
 
         const openModal = (projectId) => {
             const data = projectData[projectId];
+            if (!data) return;
 
-            if (data) {
-                modalTitle.textContent = data.title;
-                modalSector.textContent = data.sector;
-                modalTimeline.textContent = data.timeline;
-                modalDescription.textContent = data.description;
-                renderGallery(data.images || []);
+            // Destructure data for cleaner access
+            const { title, sector, timeline, description, images } = data;
 
-                modal.classList.add('is-open');
-                body.classList.add('no-scroll');
+            modalTitle.textContent = title;
+            modalSector.textContent = sector;
+            modalTimeline.textContent = timeline;
+            modalDescription.textContent = description;
+            renderGallery(images);
 
-                // Focus on the close button for accessibility
-                closeBtn.focus();
+            modal.classList.add('is-open');
+            body.classList.add('no-scroll');
 
-                window.location.hash = `project=${projectId}`;
-            }
+            closeBtn.focus();
+            window.location.hash = `project=${projectId}`;
         };
 
         const closeModal = () => {
             modal.classList.remove('is-open');
             body.classList.remove('no-scroll');
 
-            // Clear only the project hash on closing the modal
-            const currentHash = window.location.hash.substring(1);
-            const newHashParts = currentHash.split('&').filter(h => !h.startsWith('project='));
+            // Pause the video if open
+            if (modalMainVideo.pause) modalMainVideo.pause();
 
-            if (newHashParts.length > 0) {
-                window.location.hash = newHashParts.join('&');
+            // Clear only the project hash on closing
+            const currentHash = window.location.hash.substring(1);
+            const newHash = currentHash.split('&').filter(h => !h.startsWith('project=')).join('&');
+
+            if (newHash) {
+                window.location.hash = newHash;
             } else if (currentHash.includes('project=')) {
-                // If only project hash was present, clear the hash entirely
                 history.pushState("", document.title, window.location.pathname + window.location.search);
             }
         };
 
+        // --- Filtering and Search Functions ---
+
+        /**
+         * Filters the project grid based on category and search term.
+         * @param {string} newFilter - The category filter to apply.
+         */
         const applyFilter = (newFilter) => {
             const searchTerm = projectSearch.value.toLowerCase().trim();
             let currentFilter = newFilter || document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
 
-            // Update button active state
+            // Update button active state and ARIA
             filterButtons.forEach(btn => {
                 const filter = btn.getAttribute('data-filter');
                 const isActive = filter === currentFilter;
                 btn.classList.toggle('active', isActive);
-                btn.setAttribute('aria-pressed', isActive); // Set ARIA state
+                btn.setAttribute('aria-pressed', isActive);
             });
 
-            // If a new filter was provided, make it the current filter
-            if (newFilter) currentFilter = newFilter;
-
-
-            // Filter items
+            // Filter items logic
             projectItems.forEach(item => {
                 const categories = item.getAttribute('data-category').toLowerCase().split(/\s+/);
                 const projectId = item.getAttribute('data-id');
@@ -1278,23 +1427,24 @@ Responsive Design
                     item.style.display = 'none';
                     return;
                 }
-                // The rest of your applyFilter function continues here...
-                // Combine all searchable text (added title for robust search)
+
+                // Comprehensive searchable text
                 const itemText = (itemData.title + ' ' + itemData.sector + ' ' + itemData.timeline + ' ' + itemData.description + ' ' + categories.join(' ')).toLowerCase();
 
-                // Check both filter and search term
-                const matchesFilter = currentFilter === 'all' || categories.includes(currentFilter.toLowerCase());
+                const matchesFilter = currentFilter === 'all' || categories.includes(currentFilter);
                 const matchesSearch = !searchTerm || itemText.includes(searchTerm);
 
                 const matches = matchesFilter && matchesSearch;
 
                 if (matches) {
                     item.style.display = 'block';
+                    // Animation for visibility
                     setTimeout(() => {
                         item.style.opacity = '1';
                         item.style.transform = 'scale(1)';
                     }, 50);
                 } else {
+                    // Animation for hiding
                     item.style.opacity = '0';
                     item.style.transform = 'scale(0.95)';
                     setTimeout(() => {
@@ -1303,7 +1453,7 @@ Responsive Design
                 }
             });
 
-            // Update hash for shareability (maintaining simplicity)
+            // Update hash for shareability
             const currentHash = window.location.hash.substring(1);
             const otherParams = currentHash.split('&').filter(h => !h.startsWith('filter=') && h.length > 1).join('&');
 
@@ -1319,91 +1469,38 @@ Responsive Design
             }
         };
 
-        // --- URL Hash Handler ---
+        // --- Event Handlers ---
 
-        const handleHash = () => {
-            const hash = window.location.hash.substring(1);
-            const params = new URLSearchParams(hash.replace(/&/g, ',').replace(/=/g, '='));
-
-            const projectId = params.get('project');
-            const filterValue = params.get('filter');
-
-            if (projectId && projectData.hasOwnProperty(projectId)) {
-                openModal(projectId);
-            } else if (modal.classList.contains('is-open')) {
-                closeModal(); // Close modal if project ID is invalid
-            }
-
-            if (filterValue) {
-                applyFilter(filterValue);
-            } else {
-                // If no filter in hash, ensure 'all' is visually active
-                const activeFilterButton = document.querySelector('.filter-btn.active')?.getAttribute('data-filter');
-                if (activeFilterButton !== 'all') {
-                    applyFilter('all');
-                }
-            }
-        };
-
-
-        // --- Event Listeners ---
-
-        // 1. SCROLL LOGIC & HEADER SHRINK
+        // Scroll Logic (Header shrink & Back to Top visibility)
         const handleScroll = () => {
             const scrollY = window.scrollY || document.documentElement.scrollTop;
 
             header.classList.toggle('scrolled', scrollY > 50);
-
-            if (scrollY > SCROLL_THRESHOLD) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
+            backToTopBtn.classList.toggle('show', scrollY > SCROLL_THRESHOLD);
         };
-        const throttle = (func, limit) => {
-            let inThrottle;
-            return function () {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
         window.addEventListener('scroll', throttle(handleScroll, 100));
-        handleScroll();
+        handleScroll(); // Run on load
 
-
-        // 2. MOBILE MENU TOGGLE
+        // Mobile Menu Toggle
         menuToggle.addEventListener('click', () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
 
-            // Toggle classes
             navbar.classList.toggle('is-open');
             body.classList.toggle('no-scroll');
-
-            // Update ARIA attributes
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
         });
 
-        // 3. FILTER LOGIC
+        // Filter Logic
         filterButtons.forEach(button => {
             button.addEventListener('click', function () {
-                // The filter value from the button's data attribute is passed
                 applyFilter(this.getAttribute('data-filter'));
             });
         });
 
-        // 4. LIVE SEARCH LOGIC
-        projectSearch.addEventListener('input', () => {
-            // Apply filter using the currently active button (which now includes the search term)
-            applyFilter();
-        });
+        // Live Search Logic
+        projectSearch.addEventListener('input', () => applyFilter());
 
-
-        // 5. MODAL OPEN LOGIC
+        // Modal Open Logic
         projectItems.forEach(item => {
             item.addEventListener('click', function () {
                 const projectId = this.getAttribute('data-id');
@@ -1411,7 +1508,12 @@ Responsive Design
             });
         });
 
-        // 6. MODAL CLOSE EVENTS
+        // Featured Banner Click
+        if (featuredDetailsBtn && featuredProjectId) {
+            featuredDetailsBtn.addEventListener('click', () => openModal(featuredProjectId));
+        }
+
+        // Modal Close Events
         closeBtn.addEventListener('click', closeModal);
         closeBtn.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -1430,27 +1532,10 @@ Responsive Design
             }
         });
 
-        // Featured Banner Click
-        const viewDetailsBtn = document.querySelector('.featured-banner .view-details-btn');
-        const featuredProjectId = viewDetailsBtn?.getAttribute('data-project-id');
-
-        if (viewDetailsBtn && featuredProjectId) {
-            viewDetailsBtn.addEventListener('click', function () {
-                openModal(featuredProjectId);
-            });
-        }
-
-        // 7. BACK TO TOP BUTTON
+        // Back to Top Button
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-
-        // 8. INITIAL & HISTORY HASH HANDLERS
-        window.addEventListener('hashchange', handleHash);
 
         // Close mobile menu when a nav link is clicked (UX improvement)
         navbar.querySelectorAll('a').forEach(link => {
@@ -1463,11 +1548,38 @@ Responsive Design
             });
         });
 
+
+        // --- URL Hash Handler ---
+        const handleHash = () => {
+            const hash = window.location.hash.substring(1);
+            // Use URLSearchParams for robust parsing
+            const params = new URLSearchParams(hash.replace(/&/g, '&').replace(/=/g, '='));
+
+            const projectId = params.get('project');
+            const filterValue = params.get('filter');
+
+            // Handle Project Modal State
+            if (projectId && projectData.hasOwnProperty(projectId)) {
+                openModal(projectId);
+            } else if (modal.classList.contains('is-open')) {
+                closeModal();
+            }
+
+            // Handle Filter State
+            if (filterValue) {
+                applyFilter(filterValue);
+            } else {
+                // Ensure 'all' is active if no filter is specified in the URL
+                const activeFilterButton = document.querySelector('.filter-btn.active')?.getAttribute('data-filter');
+                if (activeFilterButton !== 'all') {
+                    applyFilter('all');
+                }
+            }
+        };
+
+        window.addEventListener('hashchange', handleHash);
         handleHash(); // Run once on load to check the initial URL
     });
-
-
-</script>
 
 </script>
 </body>
